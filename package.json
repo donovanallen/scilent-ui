@@ -33,7 +33,7 @@
     "docs:build": "turbo run docs:build",
     "clean": "git clean -xdf node_modules",
     "clean:workspaces": "turbo run clean",
-    "prepare": "husky install",
+    "prepare": "npx husky",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "turbo run build && changeset publish"
