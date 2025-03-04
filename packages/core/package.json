@@ -36,5 +36,13 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@radix-ui/react-primitive": "^2.0.2",
+    "@radix-ui/react-scroll-area": "^1.2.3",
+    "@radix-ui/react-switch": "^1.1.3",
+    "@radix-ui/react-toggle-group": "^1.1.2",
+    "@types/styled-components": "^5.1.34",
+    "styled-components": "^6.1.15"
   }
 }
