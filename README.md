@@ -36,6 +36,7 @@ A component and utility library for music-based applications and UIs.
     - [✨ Rich Interactions](#-rich-interactions)
     - [🔍 Type Safety](#-type-safety)
     - [📖 Open Source](#-open-source)
+  - [Design Guidelines](#design-guidelines)
   - [Requirements](#requirements)
   - [Getting Started](#getting-started)
     - [Using NVM (recommended)](#using-nvm-recommended)
@@ -124,6 +125,10 @@ A component and utility library for music-based applications and UIs.
 - Transparent roadmap and issue tracking
 - Welcoming to contributions
 
+## Design Guidelines
+
+Read more about the design philosophy and guidelines behind Scilent UI [here](https://github.com/donovanallen/scilent-ui/blob/main/DESIGN.md).
+
 ## Requirements
 
 - Node.js v23 or higher
@@ -193,6 +198,8 @@ pnpm release
 3. Commit your changes using conventional commits (`git commit -m 'feat: add some amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+See the [Contributing](#https://github.com/donovanallen/scilent-ui/blob/main/CONTRIBUTING.md) readme for more instructions on how to contribute to this project.
 
 ## License
 
