@@ -1,4 +1,22 @@
 packages:
-  - 'packages/*'
+  - 'packages/core' # TODO: add other packages when ready 'packages/*'
   - 'apps/*'
   - 'playgrounds/*'
+
+catalog:
+  eslint: ^9.12.0
+  prettier: ^3.3.3
+  typescript: ^5.3.3
+  react: 19.0.0
+  react-dom: 19.0.0
+  '@types/react': ^19.0.0
+  '@types/react-dom': ^19.0.0
+  tsup: ^8.0.2
+  typescript-eslint: ^7.18.0
+
+catalogs:
+  react18:
+    react: 18.3.1
+    react-dom: 18.3.1
+    '@types/react': ^18.3.11
+    '@types/react-dom': ^18.3.1

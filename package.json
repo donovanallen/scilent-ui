@@ -1,10 +1,8 @@
 {
   "name": "scilent-ui",
+  "version": "0.0.1",
   "author": "Scilent Digital <hello@scilent.digital>",
-  "version": "0.0.0",
   "description": "A component and utility library for music-based applications and UIs",
-  "license": "MIT",
-  "private": true,
   "keywords": [
     "music",
     "ui",
@@ -12,22 +10,29 @@
     "react",
     "typescript"
   ],
+  "license": "MIT",
+  "private": true,
   "packageManager": "pnpm@10.5.2",
   "engines": {
     "node": ">=23.0.0"
   },
+  "type": "module",
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "eslint .",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,yml,yaml}\"",
+    "dev": "turbo watch dev --continue",
+    "dev:next": "turbo watch dev -F @scilent-ui/core...",
+    "format": "turbo run format --continue -- --cache --cache-location .cache/.prettiercache",
+    "format:fix": "turbo run format --continue -- --write --cache --cache-location .cache/.prettiercache",
+    "lint": "turbo run lint --continue -- --cache --cache-location .cache/.eslintcache",
+    "lint:fix": "turbo run lint --continue -- --fix --cache --cache-location .cache/.eslintcache",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
     "storybook": "turbo run storybook",
     "build-storybook": "turbo run build-storybook",
     "docs:dev": "turbo run docs:dev",
     "docs:build": "turbo run docs:build",
-    "clean": "turbo run clean",
+    "clean": "git clean -xdf node_modules",
+    "clean:workspaces": "turbo run clean",
     "prepare": "husky install",
     "changeset": "changeset",
     "version-packages": "changeset version",
@@ -46,7 +51,7 @@
     "@types/jest": "^29.5.12",
     "@typescript-eslint/eslint-plugin": "^8.26.0",
     "@typescript-eslint/parser": "^8.26.0",
-    "eslint": "^9.0.0",
+    "eslint": "catalog:",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-react": "^7.33.2",
@@ -58,10 +63,10 @@
     "jest-environment-jsdom": "^29.7.0",
     "jiti": "^2.4.2",
     "lint-staged": "^15.4.3",
-    "prettier": "^3.2.5",
+    "prettier": "catalog:",
     "ts-jest": "^29.1.2",
     "turbo": "^2.0.0",
-    "typescript": "^5.3.3",
-    "typescript-eslint": "^7.18.0"
+    "typescript": "catalog:",
+    "typescript-eslint": "catalog:"
   }
 }
