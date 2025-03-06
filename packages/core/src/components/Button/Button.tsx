@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Primitive from '@radix-ui/react-primitive';
 import styled, { css } from 'styled-components';
-import type { ButtonVariant, ButtonSize } from '../types';
+import type { ButtonVariant, ButtonSize } from '../../types';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**

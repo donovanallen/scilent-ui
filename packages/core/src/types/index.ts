@@ -72,6 +72,3 @@ export interface CSSVariables {
   '--radius-artwork-spotify': string;
   '--radius-artwork-tidal': string;
 }
-
-// Export artwork types
-// export * from './artwork';
