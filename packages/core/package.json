@@ -18,19 +18,31 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-    "test": "jest --passWithNoTests"
+    "test": "jest --passWithNoTests",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "peerDependencies": {
     "react": "catalog:",
     "react-dom": "catalog:"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.5",
+    "@storybook/addon-essentials": "^8.6.4",
+    "@storybook/addon-interactions": "^8.6.4",
+    "@storybook/addon-onboarding": "^8.6.4",
+    "@storybook/blocks": "^8.6.4",
+    "@storybook/react": "^8.6.4",
+    "@storybook/react-vite": "^8.6.4",
+    "@storybook/test": "^8.6.4",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "eslint": "catalog:",
     "eslint-config-custom": "*",
+    "eslint-plugin-storybook": "^0.11.4",
     "react": "catalog:",
     "react-dom": "catalog:",
+    "storybook": "^8.6.4",
     "tsup": "catalog:",
     "typescript": "catalog:"
   },
@@ -38,11 +50,18 @@
     "access": "public"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.6",
     "@radix-ui/react-primitive": "^2.0.2",
     "@radix-ui/react-scroll-area": "^1.2.3",
     "@radix-ui/react-switch": "^1.1.3",
     "@radix-ui/react-toggle-group": "^1.1.2",
     "@types/styled-components": "^5.1.34",
+    "react-icons": "^5.5.0",
     "styled-components": "^6.1.15"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
   }
 }
