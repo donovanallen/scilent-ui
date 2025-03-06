@@ -16,6 +16,8 @@ A component and utility library for music-based applications and UIs.
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3.3-blue)](https://www.typescriptlang.org/)
 ![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)
 ![Turborepo](https://img.shields.io/badge/Turborepo-EF4444?logo=turborepo&logoColor=white)
+![Storybook](https://img.shields.io/badge/Storybook-FF4785?logo=storybook&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -41,6 +43,7 @@ A component and utility library for music-based applications and UIs.
   - [Getting Started](#getting-started)
     - [Using NVM (recommended)](#using-nvm-recommended)
     - [Development](#development)
+    - [Component Development with Storybook](#component-development-with-storybook)
     - [Project Structure](#project-structure)
     - [Release Process](#release-process)
   - [Contributing](#contributing)
@@ -86,8 +89,8 @@ A component and utility library for music-based applications and UIs.
 - Monorepo structure using [Turborepo](#) for efficient development
 <!-- TODO: Cursor Rules and link to docs -->
 - BONUS: AI-ready with [.cursorrules](#) boilerplate template
-  <!-- TODO: add storybook -->
-  <!-- - [Storybook](https://storybook.js.org/) for interactive component exploration -->
+- [Storybook](https://storybook.js.org/) for interactive component exploration and documentation
+- [Vite](https://vitejs.dev/) for lightning-fast development experience
 - Latest web standards and best practices
 
 ### ♿ Accessibility First
@@ -168,6 +171,33 @@ pnpm build
 pnpm storybook
 ```
 
+### Component Development with Storybook
+
+We use [Storybook](https://storybook.js.org/) for developing and documenting components in isolation. Storybook provides a great way to visualize different states of your components and develop them interactively.
+
+```bash
+# Start Storybook
+pnpm storybook
+
+# Build Storybook for static deployment
+pnpm build-storybook
+```
+
+Storybook is powered by [Vite](https://vitejs.dev/), which provides:
+
+- Extremely fast hot module replacement (HMR)
+- Native ES modules support
+- Optimized build performance
+- Built-in support for TypeScript, JSX, CSS, and more
+
+Each component in the library has:
+
+- A `.stories.tsx` file that defines various states and variants
+- A `.mdx` file for comprehensive documentation
+- Auto-generated API documentation from TypeScript types and JSDoc comments
+
+To view the Storybook documentation locally, run `pnpm storybook` and open your browser to http://localhost:6006.
+
 ### Project Structure
 
 This is a monorepo managed with pnpm workspaces and Turborepo. The packages are organized as follows:
@@ -199,7 +229,7 @@ pnpm release
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-See the [Contributing](#https://github.com/donovanallen/scilent-ui/blob/main/CONTRIBUTING.md) readme for more instructions on how to contribute to this project.
+See the [Contributing](https://github.com/donovanallen/scilent-ui/blob/main/CONTRIBUTING.md) readme for more instructions on how to contribute to this project.
 
 ## License
 
