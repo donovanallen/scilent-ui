@@ -3,6 +3,8 @@
 A component and utility library for music-based applications and UIs.
 
 [![Build](https://github.com/donovanallen/scilent-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/donovanallen/scilent-ui/actions/workflows/ci.yml)
+[![Linting](https://github.com/donovanallen/scilent-ui/actions/workflows/lint.yml/badge.svg)](https://github.com/donovanallen/scilent-ui/actions/workflows/lint.yml)
+[![Release](https://github.com/donovanallen/scilent-ui/actions/workflows/release.yml/badge.svg)](https://github.com/donovanallen/scilent-ui/actions/workflows/release.yml)
 
 <!-- [![Documentation](https://img.shields.io/badge/docs-website-blue)](https://your-docs-site.com) -->
 <!-- [![codecov](https://codecov.io/gh/donovanallen/scilent-ui/branch/main/graph/badge.svg)](https://codecov.io/gh/donovanallen/scilent-ui) -->
@@ -14,14 +16,12 @@ A component and utility library for music-based applications and UIs.
 [![devDependencies Status](https://status.david-dm.org/gh/donovanallen/scilent-ui.svg?type=dev)](https://david-dm.org/donovanallen/scilent-ui?type=dev) -->
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3.3-blue)](https://www.typescriptlang.org/)
-![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)
-![Turborepo](https://img.shields.io/badge/Turborepo-EF4444?logo=turborepo&logoColor=white)
-![Storybook](https://img.shields.io/badge/Storybook-FF4785?logo=storybook&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
+[![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://www.react.dev/)
+[![Turborepo](https://img.shields.io/badge/Turborepo-EF4444?logo=turborepo&logoColor=white)](https://turbo.build/)
+[![Storybook](https://img.shields.io/badge/Storybook-FF4785?logo=storybook&logoColor=white)](https://storybook.js.org/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-<!-- [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md) -->
 
 ## Table of Contents
 
