@@ -1,0 +1,197 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/blocks';
+import * as AlbumArtworkStories from './AlbumArtwork.stories';
+
+<Meta of={AlbumArtworkStories} />
+
+# AlbumArtwork
+
+The `AlbumArtwork` component is designed to display album artwork with various customization options while adhering to the Scilent UI [Design Guidelines](https://github.com/donovanallen/scilent-ui/blob/main/DESIGN.md).
+
+## Overview
+
+Album artwork is a central visual element in music applications. This component provides a flexible way to display album covers with proper aspect ratio preservation and various styling options.
+
+<Canvas of={AlbumArtworkStories.Default} />
+
+## Props
+
+<Controls />
+
+## Features
+
+- Displays album artwork with proper aspect ratio preservation
+- Supports multiple size variants
+- Platform-specific styling (Apple Music, Spotify, Tidal)
+- Expandable view for full-size artwork
+- Accessibility-focused with proper ARIA attributes
+- Customizable with themes and styling options
+- Responsive design with proper image loading
+- Framework-agnostic with support for custom image components
+
+## Size Variants
+
+The component supports multiple predefined sizes as well as custom numeric sizes.
+
+<Canvas of={AlbumArtworkStories.SizeComparison} />
+
+## Platform-Specific Styling
+
+You can apply platform-specific styling to match different music service designs.
+
+<Canvas of={AlbumArtworkStories.PlatformComparison} />
+
+## Interactive Features
+
+### Zoom Effect
+
+Apply a zoom effect on hover for a more interactive experience.
+
+<Canvas of={AlbumArtworkStories.WithZoom} />
+
+### Expandable View
+
+Allow users to click on the artwork to see it in full size.
+
+<Canvas of={AlbumArtworkStories.Expandable} />
+
+### Shadow Effect
+
+Add a subtle shadow to make the artwork stand out.
+
+<Canvas of={AlbumArtworkStories.WithShadow} />
+
+## Usage Examples
+
+### Basic Usage
+
+```tsx
+import { AlbumArtwork } from '@scilent-ui/core';
+
+function MyComponent() {
+  return <AlbumArtwork image="https://example.com/album-cover.jpg" name="Album Name" size="md" />;
+}
+```
+
+### With Platform-Specific Styling
+
+```tsx
+import { AlbumArtwork } from '@scilent-ui/core';
+
+function MyComponent() {
+  return (
+    <div>
+      <h3>Apple Music Style</h3>
+      <AlbumArtwork
+        image="https://example.com/album-cover.jpg"
+        name="Album Name"
+        platform="apple"
+        shadow
+        size="md"
+      />
+
+      <h3>Spotify Style</h3>
+      <AlbumArtwork
+        image="https://example.com/album-cover.jpg"
+        name="Album Name"
+        platform="spotify"
+        size="md"
+      />
+
+      <h3>Tidal Style</h3>
+      <AlbumArtwork
+        image="https://example.com/album-cover.jpg"
+        name="Album Name"
+        platform="tidal"
+        size="md"
+      />
+    </div>
+  );
+}
+```
+
+### Expandable Artwork
+
+```tsx
+import { AlbumArtwork } from '@scilent-ui/core';
+
+function MyComponent() {
+  return (
+    <AlbumArtwork
+      image="https://example.com/album-cover.jpg"
+      name="Album Name"
+      size="md"
+      expandable
+      zoom
+    />
+  );
+}
+```
+
+### Custom Styling
+
+```tsx
+import { AlbumArtwork } from '@scilent-ui/core';
+
+function MyComponent() {
+  return (
+    <AlbumArtwork
+      image="https://example.com/album-cover.jpg"
+      name="Album Name"
+      size="md"
+      platform="custom"
+      borderRadius="12px"
+      shadow
+      style={{ border: '1px solid #eaeaea' }}
+    />
+  );
+}
+```
+
+### Using with Next.js Image Component
+
+```tsx
+import { AlbumArtwork } from '@scilent-ui/core';
+import Image from 'next/image';
+
+function MyComponent() {
+  return (
+    <AlbumArtwork
+      image="https://example.com/album-cover.jpg"
+      name="Album Name"
+      size="md"
+      ImageComponent={Image}
+      imageProps={{
+        fill: true,
+        sizes: '(min-width: 1280px) 20vw, (min-width: 768px) 25vw, 50vw',
+        quality: 90,
+        priority: true,
+      }}
+    />
+  );
+}
+```
+
+## Accessibility
+
+The `AlbumArtwork` component follows accessibility best practices:
+
+- Proper alt text for images
+- Keyboard navigation support
+- ARIA attributes for interactive elements
+- Focus management for the expandable modal
+- Screen reader announcements
+
+## Design Guidelines
+
+This component adheres to the Scilent UI design guidelines for album artwork:
+
+- Never crops, filters, or modifies album artwork
+- Displays at highest available resolution
+- Maintains original aspect ratio
+- Optional subtle shadows to help artwork stand out against backgrounds
+- Platform-specific styling options
+
+## Related Components
+
+- [MusicPlayer](/docs/components-musicplayer--docs) - For playback controls with album artwork
+- [Button](/docs/components-button--docs) - For interactive controls 
