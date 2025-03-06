@@ -16,6 +16,7 @@ Core components and utilities for music-based applications and UIs.
   - [Installation](#installation)
   - [Usage](#usage)
   - [Components](#components)
+    - [AlbumArtwork](#albumartwork)
     - [Button](#button)
     - [MusicPlayer](#musicplayer)
   - [Documentation](#documentation)
@@ -46,11 +47,12 @@ pnpm add @scilent-ui/core
 ## Usage
 
 ```jsx
-import { Button, MusicPlayer } from '@scilent-ui/core';
+import { AlbumArtwork, Button, MusicPlayer } from '@scilent-ui/core';
 
 function App() {
   return (
     <div>
+      <AlbumArtwork image="/path/to/album-art.jpg" name="Album Name" size="md" />
       <Button variant="primary">Play</Button>
       <MusicPlayer
         trackTitle="Song Title"
@@ -63,6 +65,22 @@ function App() {
 ```
 
 ## Components
+
+### AlbumArtwork
+
+A versatile component for displaying album artwork with various size options, platform-specific styling, and expandable functionality.
+
+```jsx
+<AlbumArtwork
+  image="https://example.com/album-cover.jpg"
+  name="Album Name"
+  size="md"
+  platform="spotify"
+  expandable={true}
+  zoom={true}
+  shadow={true}
+/>
+```
 
 ### Button
 
@@ -125,7 +143,7 @@ Each component has:
 This package exports TypeScript types for all components and utilities, ensuring type safety throughout your application.
 
 ```tsx
-import { ButtonProps, MusicPlayerProps } from '@scilent-ui/core';
+import { AlbumArtworkProps, ButtonProps, MusicPlayerProps } from '@scilent-ui/core';
 
 // Use types in your components
 const CustomButton: React.FC<ButtonProps> = props => {
