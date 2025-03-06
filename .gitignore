@@ -70,3 +70,4 @@ storybook-static
 # Changesets
 .changeset/*.md
 !.changeset/config.json 
+*storybook.log

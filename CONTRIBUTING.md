@@ -111,7 +111,92 @@ Before submitting a pull request, make sure to:
    pnpm storybook
    ```
 
-### Pull Request Process
+### Component Development with Storybook
+
+We use Storybook for developing and documenting components in isolation. Storybook provides a great way to visualize different states of your components and develop them interactively.
+
+#### Running Storybook
+
+To start Storybook locally:
+
+```bash
+# From the root directory
+pnpm storybook
+
+# Or from a specific package
+cd packages/core
+pnpm storybook
+```
+
+This will start Storybook on port 6006. Open your browser to http://localhost:6006 to view it.
+
+#### Creating Stories
+
+Each component should have a corresponding `.stories.tsx` file. For example, for a `Button.tsx` component, create a `Button.stories.tsx` file in the same directory.
+
+Basic story structure:
+
+```tsx
+import type { Meta, StoryObj } from '@storybook/react';
+import { ComponentName } from './ComponentName';
+
+const meta: Meta<typeof ComponentName> = {
+  title: 'Components/ComponentName',
+  component: ComponentName,
+  tags: ['autodocs'],
+  // Add parameters, argTypes, etc.
+};
+
+export default meta;
+type Story = StoryObj<typeof ComponentName>;
+
+export const Default: Story = {
+  args: {
+    // Component props
+  },
+};
+
+// Add more stories for different states/variants
+```
+
+#### Adding Documentation
+
+For comprehensive documentation, create an MDX file alongside your component and stories:
+
+```tsx
+// ComponentName.mdx
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as ComponentStories from './ComponentName.stories';
+
+<Meta of={ComponentStories} />
+
+# ComponentName
+
+Component description and usage guidelines.
+
+<Canvas of={ComponentStories.Default} />
+
+## Props
+
+<Controls />
+
+## Usage Examples
+
+...
+```
+
+### Vite Development Environment
+
+This project uses Vite as the development environment for Storybook. Vite provides:
+
+- Extremely fast hot module replacement (HMR)
+- Native ES modules support
+- Optimized build performance
+- Built-in support for TypeScript, JSX, CSS, and more
+
+The Vite configuration for Storybook is located in `packages/core/.storybook/vite.config.ts`.
+
+## Pull Request Process
 
 1. Update the README.md or documentation with details of changes if appropriate
 2. Create a changeset if your changes should be released
@@ -128,6 +213,12 @@ scilent-ui/
 ├── .husky/              # Git hooks
 ├── packages/            # Monorepo packages
 │   ├── core/            # Core components
+│   │   ├── .storybook/  # Storybook configuration
+│   │   ├── src/         # Component source code
+│   │   │   ├── components/ # UI components
+│   │   │   ├── hooks/      # React hooks
+│   │   │   ├── types/      # TypeScript types
+│   │   │   └── utils/      # Utility functions
 │   ├── icons/           # Icon components
 │   └── themes/          # Theme definitions
 ├── scripts/             # Build and utility scripts

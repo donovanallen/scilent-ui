@@ -4,6 +4,8 @@ Core components and utilities for music-based applications and UIs.
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3.3-blue)](https://www.typescriptlang.org/)
 ![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)
+![Storybook](https://img.shields.io/badge/Storybook-FF4785?logo=storybook&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Table of Contents
@@ -16,8 +18,10 @@ Core components and utilities for music-based applications and UIs.
   - [Components](#components)
     - [Button](#button)
     - [MusicPlayer](#musicplayer)
+  - [Documentation](#documentation)
   - [Types](#types)
   - [Development](#development)
+    - [Local Development with Storybook](#local-development-with-storybook)
   - [License](#license)
 
 ## Overview
@@ -94,6 +98,28 @@ A comprehensive music player component with playback controls and track informat
 />
 ```
 
+## Documentation
+
+Comprehensive documentation for all components is available in Storybook. To view the documentation locally:
+
+```bash
+# From the root of the monorepo
+pnpm storybook
+
+# Or from this package directory
+pnpm storybook
+```
+
+This will start a local Storybook server at http://localhost:6006 where you can explore all components, their variants, and usage guidelines.
+
+Each component has:
+
+- Interactive examples
+- Prop documentation
+- Usage guidelines
+- Accessibility information
+- Code snippets
+
 ## Types
 
 This package exports TypeScript types for all components and utilities, ensuring type safety throughout your application.
@@ -132,6 +158,49 @@ pnpm lint
 
 # Type check
 pnpm typecheck
+```
+
+### Local Development with Storybook
+
+We use Storybook with Vite for component development. Vite provides an extremely fast development experience with instant hot module replacement (HMR).
+
+```bash
+# Start Storybook
+pnpm storybook
+
+# Build Storybook for static deployment
+pnpm build-storybook
+```
+
+To create a new component story:
+
+1. Create your component in `src/components/ComponentName.tsx`
+2. Add a story file at `src/components/ComponentName.stories.tsx`
+3. Optionally add an MDX documentation file at `src/components/ComponentName.mdx`
+
+Example story file structure:
+
+```tsx
+import type { Meta, StoryObj } from '@storybook/react';
+import { ComponentName } from './ComponentName';
+
+const meta: Meta<typeof ComponentName> = {
+  title: 'Components/ComponentName',
+  component: ComponentName,
+  tags: ['autodocs'],
+  // Add parameters, argTypes, etc.
+};
+
+export default meta;
+type Story = StoryObj<typeof ComponentName>;
+
+export const Default: Story = {
+  args: {
+    // Component props
+  },
+};
+
+// Add more stories for different states/variants
 ```
 
 ## License
