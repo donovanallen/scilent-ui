@@ -166,9 +166,6 @@ importers:
       '@radix-ui/react-toggle-group':
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@19.0.4(@types/react@19.0.10))(@types/react@19.0.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      '@scilent-ui/icons':
-        specifier: workspace:*
-        version: link:../icons
       '@types/styled-components':
         specifier: ^5.1.34
         version: 5.1.34
@@ -227,52 +224,6 @@ importers:
       storybook:
         specifier: ^8.6.4
         version: 8.6.4(prettier@3.5.3)
-      tsup:
-        specifier: 'catalog:'
-        version: 8.4.0(jiti@2.4.2)(postcss@8.5.3)(typescript@5.8.2)(yaml@2.7.0)
-      typescript:
-        specifier: 'catalog:'
-        version: 5.8.2
-
-  packages/icons:
-    dependencies:
-      react-icons:
-        specifier: ^5.5.0
-        version: 5.5.0(react@19.0.0)
-    devDependencies:
-      '@types/react':
-        specifier: 'catalog:'
-        version: 19.0.10
-      eslint:
-        specifier: 'catalog:'
-        version: 9.21.0(jiti@2.4.2)
-      eslint-config-custom:
-        specifier: '*'
-        version: 0.0.0(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2)
-      react:
-        specifier: 'catalog:'
-        version: 19.0.0
-      tsup:
-        specifier: 'catalog:'
-        version: 8.4.0(jiti@2.4.2)(postcss@8.5.3)(typescript@5.8.2)(yaml@2.7.0)
-      typescript:
-        specifier: 'catalog:'
-        version: 5.8.2
-
-  packages/themes:
-    devDependencies:
-      '@types/react':
-        specifier: 'catalog:'
-        version: 19.0.10
-      eslint:
-        specifier: 'catalog:'
-        version: 9.21.0(jiti@2.4.2)
-      eslint-config-custom:
-        specifier: '*'
-        version: 0.0.0(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2)
-      react:
-        specifier: 'catalog:'
-        version: 19.0.0
       tsup:
         specifier: 'catalog:'
         version: 8.4.0(jiti@2.4.2)(postcss@8.5.3)(typescript@5.8.2)(yaml@2.7.0)
