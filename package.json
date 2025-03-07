@@ -1,7 +1,7 @@
 {
-  "name": "scilent-ui",
-  "version": "0.0.1",
-  "author": "Scilent Digital <hello@scilent.digital>",
+  "name": "@scilent/scilent-ui",
+  "version": "1.0.0",
+  "author": "Scilent Digital <hello@scilent.digital> (https://scilent.digital)",
   "description": "A component and utility library for music-based applications and UIs",
   "keywords": [
     "music",
@@ -11,12 +11,14 @@
     "typescript"
   ],
   "license": "MIT",
-  "private": true,
   "packageManager": "pnpm@10.5.2",
   "engines": {
     "node": ">=23.0.0"
   },
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo watch dev --continue",

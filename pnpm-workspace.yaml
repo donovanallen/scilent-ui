@@ -1,7 +1,8 @@
 packages:
-  - 'packages/core' # TODO: add other packages when ready 'packages/*'
-  - 'apps/*'
-  - 'playgrounds/*'
+  - 'packages/core'
+  # - 'packages/icons'
+  # - 'apps/*'
+  # - 'playgrounds/*'
 
 catalog:
   eslint: ^9.12.0
