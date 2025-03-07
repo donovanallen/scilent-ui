@@ -1,6 +1,6 @@
 {
-  "name": "@scilent-ui/core",
-  "version": "0.0.1",
+  "name": "@scilent/core",
+  "version": "1.0.0",
   "author": "Scilent Digital <hello@scilent.digital>",
   "description": "Scilent UI Component Library",
   "main": "./dist/index.js",
@@ -21,6 +21,9 @@
     "test": "jest --passWithNoTests",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
     "react": "catalog:",
@@ -45,9 +48,6 @@
     "storybook": "^8.6.4",
     "tsup": "catalog:",
     "typescript": "catalog:"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.6",
