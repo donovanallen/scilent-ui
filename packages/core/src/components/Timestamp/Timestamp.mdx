@@ -1,0 +1,147 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/blocks';
+import * as TimestampStories from './Timestamp.stories';
+
+<Meta of={TimestampStories} />
+
+# Timestamp
+
+The Timestamp component is a versatile tool for displaying time-related information in various formats, making it ideal for music applications.
+
+## Overview
+
+Timestamps are essential in music applications for displaying track durations, release dates, playback progress, and more. This component provides a unified way to handle all time-related displays with consistent styling and behavior.
+
+<Canvas of={TimestampStories.TrackDuration} />
+
+## Props
+
+<Controls />
+
+## Use Cases
+
+### Track Durations
+
+Display track lengths in MM:SS format (or HH:MM:SS for longer content).
+
+<Canvas of={TimestampStories.TrackDuration} />
+
+For longer content like podcasts or albums, hours are automatically included:
+
+<Canvas of={TimestampStories.LongDuration} />
+
+### Relative Times
+
+Show how long ago content was released, updated, or played.
+
+<Canvas of={TimestampStories.RelativeTime} />
+
+### Dates and Times
+
+Display formatted dates for album releases, event dates, etc.
+
+<Canvas of={TimestampStories.FormattedDate} />
+
+Display formatted times:
+
+<Canvas of={TimestampStories.FormattedTime} />
+
+Combined date and time:
+
+<Canvas of={TimestampStories.FormattedDateTime} />
+
+### Custom Formatting
+
+For specialized needs, you can use custom formatting options:
+
+<Canvas of={TimestampStories.CustomFormat} />
+
+## Variants
+
+### Default
+
+<Canvas of={TimestampStories.TrackDuration} />
+
+### Muted
+
+For less emphasis, such as secondary information.
+
+<Canvas of={TimestampStories.MutedVariant} />
+
+### Highlight
+
+For emphasizing important time information.
+
+<Canvas of={TimestampStories.HighlightVariant} />
+
+### Contrast
+
+For use on dark backgrounds.
+
+<Canvas of={TimestampStories.ContrastVariant} />
+
+## Sizes
+
+### Small
+
+<Canvas of={TimestampStories.SmallSize} />
+
+### Medium (Default)
+
+<Canvas of={TimestampStories.TrackDuration} />
+
+### Large
+
+<Canvas of={TimestampStories.LargeSize} />
+
+## Features
+
+### Animated Changes
+
+The component can animate value changes for a smoother user experience, particularly useful for playback timers.
+
+<Canvas of={TimestampStories.AnimatedChanges} />
+
+### Auto-updating
+
+Relative timestamps can automatically update to stay current:
+
+```jsx
+// This will update automatically every minute
+<Timestamp value={releaseDate} format="relative" autoUpdate={true} />
+```
+
+### Internationalization
+
+The component supports different locales for proper internationalization:
+
+<Canvas of={TimestampStories.DifferentLocales} />
+
+## Real-world Examples
+
+### Album Release Date
+
+<Canvas of={TimestampStories.AlbumReleaseDate} />
+
+### Current Playback Time
+
+<Canvas of={TimestampStories.PlaybackTime} />
+
+## Usage Guidelines
+
+- Use `duration` format for track lengths, playback progress, and other time durations
+- Use `relative` format for showing how long ago something happened
+- Use `date` formats for release dates and scheduled events
+- Consider using the `muted` variant for secondary time information
+- Use `animate` for values that change frequently, like playback timers
+- Enable `autoUpdate` for relative times that should stay current
+
+## Accessibility
+
+- The component uses semantic HTML elements
+- Time information is presented in a clear, readable format
+- For screen readers, the component renders as a semantic `<span>` element
+
+## Related Components
+
+- [MusicPlayer](/docs/components-musicplayer--docs) - Uses Timestamp for playback timing
+- [Button](/docs/components-button--docs) - Often used alongside timestamps for playback controls 
