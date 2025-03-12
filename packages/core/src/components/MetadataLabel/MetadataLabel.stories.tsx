@@ -54,14 +54,14 @@ type Story = StoryObj<typeof MetadataLabel>;
 // Basic example
 export const Basic: Story = {
   args: {
-    text: 'This is a basic metadata label',
+    text: 'Thriller',
   },
 };
 
 // Example with end truncation
 export const TruncateEnd: Story = {
   args: {
-    text: 'A very long text that will be truncated at the end',
+    text: 'The Dark Side of the Moon (2023 Remastered Edition)',
     truncate: true,
     truncationType: 'end',
     maxLength: 30,
@@ -78,7 +78,7 @@ export const TruncateEnd: Story = {
 // Example with middle truncation
 export const TruncateMiddle: Story = {
   args: {
-    text: 'A very long text that will be truncated in the middle',
+    text: "Sgt. Pepper's Lonely Hearts Club Band (50th Anniversary Edition)",
     truncate: true,
     truncationType: 'middle',
     maxLength: 30,
@@ -95,7 +95,7 @@ export const TruncateMiddle: Story = {
 // Example with custom styling
 export const CustomStyling: Story = {
   args: {
-    text: 'Styled metadata',
+    text: 'Abbey Road',
     style: {
       fontWeight: 'bold',
       fontStyle: 'italic',
@@ -108,7 +108,7 @@ export const CustomStyling: Story = {
 // Example with custom element type
 export const CustomElementType: Story = {
   args: {
-    text: 'Heading Element',
+    text: 'Album of the Year',
     as: 'h3',
     style: {
       margin: 0,
@@ -116,22 +116,10 @@ export const CustomElementType: Story = {
   },
 };
 
-// Example with click handler
-export const Clickable: Story = {
-  args: {
-    text: 'Click me!',
-    style: {
-      cursor: 'pointer',
-      color: '#1DB954',
-      textDecoration: 'underline',
-    },
-  },
-};
-
 // Example with complex styling
 export const ComplexStyling: Story = {
   args: {
-    text: 'Complex styled metadata',
+    text: 'Grammy Award Winner',
     style: {
       fontWeight: 'bold',
       background: 'linear-gradient(90deg, #1DB954, #191414)',
