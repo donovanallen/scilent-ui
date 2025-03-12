@@ -1,6 +1,6 @@
 /**
  * Utility functions for the core package
  */
-
-// Export artwork utilities
 export * from './artwork';
+export * from './artist';
+export * from './metadata';

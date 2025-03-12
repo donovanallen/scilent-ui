@@ -1,11 +1,5 @@
 // Export components
-export * from './components/Button/Button';
-export * from './components/Artwork/AlbumArtwork';
-// export * from './components/MusicPlayer';
-// export * from './components/ScrollArea';
-// export * from './components/Switch';
-// export * from './components/ToggleGroup';
-// export * from './components/index.ts';
+export * from './components/index';
 
 // Export hooks
 // export * from './hooks/useAudio';
