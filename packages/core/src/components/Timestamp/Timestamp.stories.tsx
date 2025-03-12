@@ -1,5 +1,7 @@
+import React, { useState, useEffect } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Timestamp } from './Timestamp';
+import { formatDuration, formatDurationHuman } from './utils';
 
 const meta: Meta<typeof Timestamp> = {
   title: 'Components/Timestamp',
@@ -74,6 +76,13 @@ const meta: Meta<typeof Timestamp> = {
     updateInterval: {
       control: 'number',
       description: 'Update interval in milliseconds for relative times',
+      table: {
+        defaultValue: { summary: '60000 (1 minute)' },
+      },
+    },
+    customFormat: {
+      control: 'object',
+      description: 'Custom format options for Intl.DateTimeFormat (only used with format="custom")',
     },
   },
 };
@@ -107,6 +116,17 @@ export const LongDuration: Story = {
 export const RelativeTime: Story = {
   args: {
     value: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
+    format: 'relative',
+    autoUpdate: true,
+  },
+};
+
+/**
+ * Future relative time
+ */
+export const FutureRelativeTime: Story = {
+  args: {
+    value: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), // 3 days in the future
     format: 'relative',
     autoUpdate: true,
   },
@@ -260,10 +280,20 @@ export const AnimatedChanges: Story = {
     animate: true,
   },
   render: function Render(args) {
+    const [currentTime, setCurrentTime] = useState(args.value as number);
+
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setCurrentTime(prev => (prev < 60 ? prev + 1 : 30));
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }, []);
+
     return (
       <div>
         <p>The timestamp will animate when the value changes:</p>
-        <Timestamp {...args} />
+        <Timestamp {...args} value={currentTime} />
       </div>
     );
   },
@@ -292,14 +322,69 @@ export const AlbumReleaseDate: Story = {
 };
 
 /**
- * Current playback time example
+ * Current playback time example with progress
  */
 export const PlaybackTime: Story = {
-  args: {
-    value: 127, // 2:07 into a song
-    format: 'duration',
-    variant: 'default',
-    size: 'md',
+  render: function Render() {
+    const [currentTime, setCurrentTime] = useState(127); // 2:07 into a song
+    const totalDuration = 237; // 3:57 total duration
+
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setCurrentTime(prev => (prev < totalDuration ? prev + 1 : 127));
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }, []);
+
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+          <Timestamp value={currentTime} format="duration" animate={true} />
+          <span style={{ color: 'var(--color-text-muted, #6b7280)' }}>/</span>
+          <Timestamp value={totalDuration} format="duration" variant="muted" />
+        </div>
+        <div
+          style={{ width: '200px', height: '4px', backgroundColor: '#e5e7eb', borderRadius: '2px' }}
+        >
+          <div
+            style={{
+              width: `${(currentTime / totalDuration) * 100}%`,
+              height: '100%',
+              backgroundColor: 'var(--color-primary, #3b82f6)',
+              borderRadius: '2px',
+              transition: 'width 0.1s linear',
+            }}
+          />
+        </div>
+      </div>
+    );
+  },
+};
+
+/**
+ * Human-readable duration format
+ */
+export const HumanReadableDuration: Story = {
+  render: function Render() {
+    const durations = [45, 125, 3600, 7325];
+
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        <p>Comparing different duration formats:</p>
+        {durations.map((duration, index) => (
+          <div key={index} style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+            <div style={{ width: '80px' }}>
+              <Timestamp value={duration} format="duration" />
+            </div>
+            <div style={{ width: '100px' }}>{formatDuration(duration, true)}</div>
+            <div style={{ color: 'var(--color-primary, #3b82f6)' }}>
+              {formatDurationHuman(duration)}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
   },
 };
 

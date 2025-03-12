@@ -33,27 +33,37 @@ export const formatDuration = (seconds: number, showHours = false): string => {
 export const formatRelativeTime = (date: Date, locale = 'en'): string => {
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
-  const diffSec = Math.round(diffMs / 1000);
-  const diffMin = Math.round(diffSec / 60);
-  const diffHour = Math.round(diffMin / 60);
-  const diffDay = Math.round(diffHour / 24);
-  const diffMonth = Math.round(diffDay / 30);
-  const diffYear = Math.round(diffDay / 365);
+  const isFuture = diffMs < 0;
+  const absDiffMs = Math.abs(diffMs);
+
+  // Calculate time differences in various units
+  const diffSec = Math.floor(absDiffMs / 1000);
+  const diffMin = Math.floor(diffSec / 60);
+  const diffHour = Math.floor(diffMin / 60);
+  const diffDay = Math.floor(diffHour / 24);
+
+  // More accurate month and year calculations
+  const nowMonth = now.getMonth() + now.getFullYear() * 12;
+  const dateMonth = date.getMonth() + date.getFullYear() * 12;
+  const diffMonth = Math.abs(nowMonth - dateMonth);
+
+  const diffYear = Math.floor(diffMonth / 12);
 
   const rtf = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });
+  const sign = isFuture ? 1 : -1;
 
   if (diffSec < 60) {
-    return rtf.format(-diffSec, 'second');
+    return rtf.format(sign * diffSec, 'second');
   } else if (diffMin < 60) {
-    return rtf.format(-diffMin, 'minute');
+    return rtf.format(sign * diffMin, 'minute');
   } else if (diffHour < 24) {
-    return rtf.format(-diffHour, 'hour');
+    return rtf.format(sign * diffHour, 'hour');
   } else if (diffDay < 30) {
-    return rtf.format(-diffDay, 'day');
+    return rtf.format(sign * diffDay, 'day');
   } else if (diffMonth < 12) {
-    return rtf.format(-diffMonth, 'month');
+    return rtf.format(sign * diffMonth, 'month');
   } else {
-    return rtf.format(-diffYear, 'year');
+    return rtf.format(sign * diffYear, 'year');
   }
 };
 
@@ -88,10 +98,23 @@ export const formatDateTime = (
     | 'yearMonth'
     | 'monthDay'
     | 'weekday'
+    | 'relative'
+    | 'duration'
     | 'custom' = 'datetime',
   locale = 'en',
   customOptions?: Intl.DateTimeFormatOptions
 ): string => {
+  // Handle special formats that don't use Intl.DateTimeFormat
+  if (format === 'relative') {
+    return formatRelativeTime(date, locale);
+  }
+
+  if (format === 'duration') {
+    // For duration format, interpret the date's time in seconds
+    const seconds = Math.floor(date.getTime() / 1000);
+    return formatDuration(seconds);
+  }
+
   if (format === 'custom' && customOptions) {
     return new Intl.DateTimeFormat(locale, customOptions).format(date);
   }
@@ -112,6 +135,10 @@ export const formatDateTime = (
     yearMonth: { year: 'numeric', month: 'long' },
     monthDay: { month: 'long', day: 'numeric' },
     weekday: { weekday: 'long' },
+    // Fallbacks for special formats (should not be used due to early returns above)
+    relative: { year: 'numeric', month: 'short', day: 'numeric' },
+    duration: { hour: 'numeric', minute: 'numeric', second: 'numeric' },
+    custom: { year: 'numeric', month: 'short', day: 'numeric' },
   };
 
   return new Intl.DateTimeFormat(locale, options[format] || options.datetime).format(date);
@@ -150,19 +177,19 @@ export const formatDurationHuman = (seconds: number): string => {
   const minutes = Math.floor((seconds % 3600) / 60);
   const secs = Math.floor(seconds % 60);
 
-  let result = '';
+  const parts = [];
 
   if (hours > 0) {
-    result += `${hours}h `;
+    parts.push(`${hours}h`);
   }
 
-  if (minutes > 0 || hours > 0) {
-    result += `${minutes}m `;
+  if (minutes > 0 || (hours > 0 && secs > 0)) {
+    parts.push(`${minutes}m`);
   }
 
   if (secs > 0 || (hours === 0 && minutes === 0)) {
-    result += `${secs}s`;
+    parts.push(`${secs}s`);
   }
 
-  return result.trim();
+  return parts.join(' ');
 };

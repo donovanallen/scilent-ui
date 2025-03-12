@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import * as Primitive from '@radix-ui/react-primitive';
 import styled, { css, keyframes } from 'styled-components';
 import type { TimestampVariant, TimestampSize, TimestampFormat } from '../../types';
+import { formatDuration, formatRelativeTime, formatDateTime } from './utils';
 
 export interface TimestampProps {
   /**
@@ -145,90 +146,6 @@ const StyledTimestamp = styled(Primitive.Primitive.span)<{
 `;
 
 /**
- * Format a duration in seconds to MM:SS or HH:MM:SS format
- */
-const formatDuration = (seconds: number, showHours = false): string => {
-  if (isNaN(seconds) || seconds < 0) return '00:00';
-
-  const hours = Math.floor(seconds / 3600);
-  const minutes = Math.floor((seconds % 3600) / 60);
-  const secs = Math.floor(seconds % 60);
-
-  if (showHours || hours > 0) {
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  }
-
-  return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-};
-
-/**
- * Format a date to a relative time string (e.g., "2 days ago")
- */
-const formatRelativeTime = (date: Date, locale = 'en'): string => {
-  const now = new Date();
-  const diffMs = now.getTime() - date.getTime();
-  const diffSec = Math.round(diffMs / 1000);
-  const diffMin = Math.round(diffSec / 60);
-  const diffHour = Math.round(diffMin / 60);
-  const diffDay = Math.round(diffHour / 24);
-  const diffMonth = Math.round(diffDay / 30);
-  const diffYear = Math.round(diffDay / 365);
-
-  const rtf = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });
-
-  if (diffSec < 60) {
-    return rtf.format(-diffSec, 'second');
-  } else if (diffMin < 60) {
-    return rtf.format(-diffMin, 'minute');
-  } else if (diffHour < 24) {
-    return rtf.format(-diffHour, 'hour');
-  } else if (diffDay < 30) {
-    return rtf.format(-diffDay, 'day');
-  } else if (diffMonth < 12) {
-    return rtf.format(-diffMonth, 'month');
-  } else {
-    return rtf.format(-diffYear, 'year');
-  }
-};
-
-/**
- * Format a date using Intl.DateTimeFormat with various presets
- */
-const formatDateTime = (
-  date: Date,
-  format: TimestampFormat = 'datetime',
-  locale = 'en',
-  customOptions?: Intl.DateTimeFormatOptions
-): string => {
-  if (format === 'custom' && customOptions) {
-    return new Intl.DateTimeFormat(locale, customOptions).format(date);
-  }
-
-  const options: Record<TimestampFormat, Intl.DateTimeFormatOptions> = {
-    date: { year: 'numeric', month: 'short', day: 'numeric' },
-    time: { hour: 'numeric', minute: 'numeric' },
-    datetime: {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-    },
-    shortDate: { month: 'numeric', day: 'numeric', year: '2-digit' },
-    shortTime: { hour: 'numeric', minute: 'numeric' },
-    shortDatetime: { month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' },
-    yearMonth: { year: 'numeric', month: 'long' },
-    monthDay: { month: 'long', day: 'numeric' },
-    weekday: { weekday: 'long' },
-    relative: { year: 'numeric', month: 'short', day: 'numeric' }, // Fallback for relative
-    duration: { hour: 'numeric', minute: 'numeric', second: 'numeric' }, // Fallback for duration
-    custom: { year: 'numeric', month: 'short', day: 'numeric' }, // Fallback for custom
-  };
-
-  return new Intl.DateTimeFormat(locale, options[format] || options.datetime).format(date);
-};
-
-/**
  * Timestamp component for displaying various time-related information
  *
  * Supports durations, relative times, and formatted dates/times
@@ -276,7 +193,8 @@ export const Timestamp = React.forwardRef<HTMLSpanElement, TimestampProps>(
             return formatDuration(value, value >= 3600);
           } else {
             // Treat number as timestamp in milliseconds
-            return formatDateTime(new Date(value), actualFormat, locale, customFormat);
+            const date = new Date(value);
+            return formatDateTime(date, actualFormat, locale, customFormat);
           }
         }
 
