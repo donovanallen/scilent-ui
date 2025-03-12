@@ -50,6 +50,11 @@ export interface MetadataLabelProps {
    * Click handler
    */
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+
+  /**
+   * Additional HTML attributes
+   */
+  [key: string]: any;
 }
 
 /**
@@ -84,6 +89,7 @@ export const MetadataLabel: React.FC<MetadataLabelProps> = ({
   className = '',
   style = {},
   onClick,
+  ...rest
 }) => {
   const textRef = useRef<HTMLElement>(null);
 
@@ -119,6 +125,7 @@ export const MetadataLabel: React.FC<MetadataLabelProps> = ({
               style={combinedStyles}
               onClick={onClick}
               data-full-text={text}
+              {...rest}
             >
               {displayText}
             </Component>
@@ -154,6 +161,7 @@ export const MetadataLabel: React.FC<MetadataLabelProps> = ({
       style={combinedStyles}
       onClick={onClick}
       data-full-text={text}
+      {...rest}
     >
       {displayText}
     </Component>

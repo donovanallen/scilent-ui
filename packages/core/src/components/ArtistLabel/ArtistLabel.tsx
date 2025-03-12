@@ -44,6 +44,7 @@ export const ArtistLabel: React.FC<ArtistLabelProps> = ({
   className = '',
   style = {},
   onClick,
+  ...rest // Add this to capture additional props
 }) => {
   // Format the artist names
   const formattedArtists = formatArtistNames(artists, delimiter);
@@ -59,6 +60,7 @@ export const ArtistLabel: React.FC<ArtistLabelProps> = ({
       className={`artist-label ${className}`}
       style={style}
       onClick={onClick}
+      {...rest} // Spread additional props
     />
   );
 };
