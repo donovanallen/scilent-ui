@@ -17,7 +17,11 @@ Core components and utilities for music-based applications and UIs.
   - [Usage](#usage)
   - [Components](#components)
     - [AlbumArtwork](#albumartwork)
-    - [Button](#button)
+    - [ArtistLabel](#artistlabel)
+    - [MetadataLabel](#metadatalabel)
+    - [Timestamp](#timestamp)
+    - [Slider](#slider)
+    - [IconButton](#iconbutton)
     - [MusicPlayer](#musicplayer)
   - [Documentation](#documentation)
   - [Types](#types)
@@ -47,13 +51,14 @@ pnpm add @scilent-ui/core
 ## Usage
 
 ```jsx
-import { AlbumArtwork, Button, MusicPlayer } from '@scilent-ui/core';
+import { AlbumArtwork, IconButton, MusicPlayer } from '@scilent-ui/core';
+import { FiPlay } from 'react-icons/fi';
 
 function App() {
   return (
     <div>
       <AlbumArtwork image="/path/to/album-art.jpg" name="Album Name" size="md" />
-      <Button variant="primary">Play</Button>
+      <IconButton icon={FiPlay} aria-label="Play" />
       <MusicPlayer
         trackTitle="Song Title"
         artistName="Artist Name"
@@ -68,33 +73,70 @@ function App() {
 
 ### AlbumArtwork
 
-A versatile component for displaying album artwork with various size options, platform-specific styling, and expandable functionality.
+A component for displaying album artwork with various size options.
 
 ```jsx
-<AlbumArtwork
-  image="https://example.com/album-cover.jpg"
-  name="Album Name"
-  size="md"
-  platform="spotify"
-  expandable={true}
-  zoom={true}
-  shadow={true}
+<AlbumArtwork image="https://example.com/album-cover.jpg" name="Album Name" size="md" />
+```
+
+### ArtistLabel
+
+A component for displaying artist names with customizable styling.
+
+```jsx
+<ArtistLabel name="Artist Name" style={{ fontWeight: 'bold' }} />
+```
+
+### MetadataLabel
+
+A versatile component for displaying music metadata with truncation options.
+
+```jsx
+<MetadataLabel
+  text="Very long track title that might need truncation"
+  truncate={true}
+  maxLength={20}
 />
 ```
 
-### Button
+### Timestamp
 
-A customizable button component with various styles and states.
+A component for displaying time-related information in various formats.
 
 ```jsx
-<Button variant="primary" size="medium" onClick={() => console.log('Button clicked')}>
-  Click Me
-</Button>
+<Timestamp
+  value={180} // 3 minutes in seconds
+  format="duration"
+/>
+```
+
+### Slider
+
+A customizable slider component for progress bars and volume controls.
+
+```jsx
+<Slider value={[50]} min={0} max={100} step={1} onValueChange={value => console.log(value)} />
+```
+
+### IconButton
+
+A button component that displays an icon with various states and variants.
+
+```jsx
+import { FiHeart } from 'react-icons/fi';
+
+<IconButton
+  icon={FiHeart}
+  variant="primary"
+  size="md"
+  aria-label="Like"
+  onClick={() => console.log('Liked!')}
+/>;
 ```
 
 ### MusicPlayer
 
-A comprehensive music player component with playback controls and track information display.
+A basic music player component with playback controls and track information display.
 
 ```jsx
 <MusicPlayer
@@ -107,18 +149,12 @@ A comprehensive music player component with playback controls and track informat
   onPause={() => {
     /* Handle pause */
   }}
-  onNext={() => {
-    /* Handle next */
-  }}
-  onPrevious={() => {
-    /* Handle previous */
-  }}
 />
 ```
 
 ## Documentation
 
-Comprehensive documentation for all components is available in Storybook. To view the documentation locally:
+Documentation for all components is available in Storybook. To view the documentation locally:
 
 ```bash
 # From the root of the monorepo
@@ -135,7 +171,6 @@ Each component has:
 - Interactive examples
 - Prop documentation
 - Usage guidelines
-- Accessibility information
 - Code snippets
 
 ## Types
@@ -143,10 +178,18 @@ Each component has:
 This package exports TypeScript types for all components and utilities, ensuring type safety throughout your application.
 
 ```tsx
-import { AlbumArtworkProps, ButtonProps, MusicPlayerProps } from '@scilent-ui/core';
+import {
+  AlbumArtworkProps,
+  IconButtonProps,
+  MusicPlayerProps,
+  ArtistLabelProps,
+  MetadataLabelProps,
+  TimestampProps,
+  SliderProps,
+} from '@scilent-ui/core';
 
 // Use types in your components
-const CustomButton: React.FC<ButtonProps> = props => {
+const CustomButton: React.FC<IconButtonProps> = props => {
   // Implementation
 };
 ```
@@ -192,9 +235,9 @@ pnpm build-storybook
 
 To create a new component story:
 
-1. Create your component in `src/components/ComponentName.tsx`
-2. Add a story file at `src/components/ComponentName.stories.tsx`
-3. Optionally add an MDX documentation file at `src/components/ComponentName.mdx`
+1. Create your component in `src/components/ComponentName/ComponentName.tsx`
+2. Add a story file at `src/components/ComponentName/ComponentName.stories.tsx`
+3. Export your component in `src/components/index.ts`
 
 Example story file structure:
 
