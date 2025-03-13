@@ -21,7 +21,7 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "peerDependencies": {
     "react": "catalog:"
