@@ -344,19 +344,6 @@ export const PlaybackTime: Story = {
           <span style={{ color: 'var(--color-text-muted, #6b7280)' }}>/</span>
           <Timestamp value={totalDuration} format="duration" variant="muted" />
         </div>
-        <div
-          style={{ width: '200px', height: '4px', backgroundColor: '#e5e7eb', borderRadius: '2px' }}
-        >
-          <div
-            style={{
-              width: `${(currentTime / totalDuration) * 100}%`,
-              height: '100%',
-              backgroundColor: 'var(--color-primary, #3b82f6)',
-              borderRadius: '2px',
-              transition: 'width 0.1s linear',
-            }}
-          />
-        </div>
       </div>
     );
   },
