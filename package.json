@@ -22,7 +22,8 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo watch dev --continue",
-    "dev:next": "turbo watch dev -F @scilent-ui/core...",
+    "dev:core": "turbo dev --filter=@scilent/core",
+    "dev:icons": "turbo dev --filter=@scilent-ui/icons",
     "format": "turbo run format --continue -- --cache --cache-location .cache/.prettiercache",
     "format:fix": "turbo run format --continue -- --write --cache --cache-location .cache/.prettiercache",
     "lint": "turbo run lint --continue -- --cache --cache-location .cache/.eslintcache",
