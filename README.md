@@ -29,16 +29,16 @@ A component and utility library for music-based applications and UIs.
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
     - [🎵 Music-Focused Components](#-music-focused-components)
-    - [🎨 Comprehensive Theming](#-comprehensive-theming)
+    - [🎨 Theming System](#-theming-system)
     - [🔌 Music Provider Integration](#-music-provider-integration)
-    - [📱 Responsive \& Adaptive](#-responsive--adaptive)
+    - [📱 Responsive Design](#-responsive-design)
     - [🚀 Modern Technology Stack](#-modern-technology-stack)
-    - [♿ Accessibility First](#-accessibility-first)
-    - [🧩 Customizable \& Extensible](#-customizable--extensible)
+    - [♿ Accessibility](#-accessibility)
+    - [🧩 Customizable Components](#-customizable-components)
     - [✨ Rich Interactions](#-rich-interactions)
     - [🔍 Type Safety](#-type-safety)
     - [📖 Open Source](#-open-source)
-  - [Design Guidelines](#design-guidelines)
+  - [Current Status](#current-status)
   - [Requirements](#requirements)
   - [Getting Started](#getting-started)
     - [Using NVM (recommended)](#using-nvm-recommended)
@@ -53,84 +53,133 @@ A component and utility library for music-based applications and UIs.
 
 ### 🎵 Music-Focused Components
 
-- Presentational components specifically designed for music metadata display
-- Interactive music players, visualizers, and controls
-- Specialized components for playlists, albums, artists, and tracks
-- Developer utilities for handling music data and playback
+- **Available Now:**
 
-### 🎨 Comprehensive Theming
+  - AlbumArtwork component for displaying album covers
+  - ArtistLabel for artist name display
+  - MetadataLabel for general music metadata
+  - Timestamp component for time display
+  - Slider component for progress bars and volume controls
+  - IconButton for common music player actions
+  - Basic MusicPlayer component
 
-- Flexible theming system with light and dark modes
-- Rich typography system optimized for music applications
-- Extensive iconography for music-related actions and metadata
-<!-- - [Color systems](https://www.w3.org/TR/css-color-4/) that follow modern standards -->
+- **Coming Soon:**
+  - Advanced music visualizers
+  - Playlist components
+  - Track list components
+  - More specialized music metadata displays
+
+### 🎨 Theming System
+
+- **Available Now:**
+
+  - Basic theming with CSS variables
+  - Component-level styling customization
+
+- **Coming Soon:**
+  - Comprehensive theming system with light and dark modes
+  - Rich typography system optimized for music applications
+  - Extensive iconography for music-related actions
 
 ### 🔌 Music Provider Integration
 
-- Support for all major music providers including Spotify, Apple Music, Tidal, YouTube Music, SoundCloud, and more
-- Components that comply with each provider's design and branding guidelines
-- TOS-compliant implementations for each platform
-- Standardized interfaces across providers
-<!-- TODO: add docs for provider integration guidance incl TOS links -->
+- **Planned for Future Releases:**
+  - Support for major music providers (Spotify, Apple Music, Tidal, etc.)
+  - Provider-specific styling and branding compliance
+  - Standardized interfaces across providers
 
-### 📱 Responsive & Adaptive
+### 📱 Responsive Design
 
-- Fully responsive designs that work across all device sizes
-- Adaptive layouts for different screen orientations
-- Touch-optimized interactions for mobile devices
-- Consistent experience across platforms
+- **Available Now:**
+
+  - Basic responsive components
+
+- **Coming Soon:**
+  - Fully responsive designs for all device sizes
+  - Adaptive layouts for different screen orientations
+  - Touch-optimized interactions for mobile devices
 
 ### 🚀 Modern Technology Stack
 
-- Built with [React 19](https://react.dev/) and [TypeScript](https://www.typescriptlang.org/)
-<!-- TODO: add link to tsup docs -->
-- Bundled with [TSUP](#) for optimal package size
-<!-- TODO: add link to turborepo docs -->
-- Monorepo structure using [Turborepo](#) for efficient development
-<!-- TODO: Cursor Rules and link to docs -->
-- BONUS: AI-ready with [.cursorrules](#) boilerplate template
-- [Storybook](https://storybook.js.org/) for interactive component exploration and documentation
-- [Vite](https://vitejs.dev/) for lightning-fast development experience
-- Latest web standards and best practices
+- **Available Now:**
 
-### ♿ Accessibility First
+  - Built with React and TypeScript
+  - Monorepo structure using Turborepo
+  - Storybook for component documentation
+  - Vite for development
 
-- Based on [Radix UI Primitives](https://www.radix-ui.com/primitives) for robust accessibility
-- WCAG 2.1 AA compliant components
-- Keyboard navigation support
-- Screen reader optimized
+- **Coming Soon:**
+  - AI-ready with .cursorrules boilerplate template
 
-### 🧩 Customizable & Extensible
+### ♿ Accessibility
 
-- Modular architecture for picking only what you need
-- Highly customizable components via props and theming
-- Extensible design patterns for building custom components
-- Composition-based API for maximum flexibility
+- **Available Now:**
+
+  - Based on Radix UI Primitives for core accessibility
+  - Basic keyboard navigation support
+
+- **Coming Soon:**
+  - Full WCAG 2.1 AA compliance
+  - Enhanced screen reader optimization
+  - Comprehensive keyboard navigation
+
+### 🧩 Customizable Components
+
+- **Available Now:**
+
+  - Component customization via props
+  - Style overrides with CSS variables
+
+- **Coming Soon:**
+  - Enhanced theming API
+  - More extensible component patterns
 
 ### ✨ Rich Interactions
 
-- Smooth animations and transitions
-- Advanced interaction patterns
-- Audio-reactive components
-- Haptic feedback support for compatible devices
+- **Available Now:**
+
+  - Basic animations and transitions
+
+- **Coming Soon:**
+  - Advanced interaction patterns
+  - Audio-reactive components
+  - Haptic feedback support
 
 ### 🔍 Type Safety
 
-- 100% TypeScript throughout the codebase
-- Comprehensive type definitions for all components and utilities
-- Strongly typed theme system
-- IntelliSense support in modern IDEs
+- **Available Now:**
+
+  - TypeScript throughout the codebase
+  - Type definitions for all components
+
+- **Coming Soon:**
+  - Enhanced type definitions
+  - Strongly typed theme system
 
 ### 📖 Open Source
 
-- [MIT licensed](https://opensource.org/licenses/MIT) for maximum flexibility
-- Community-driven development
-- Transparent roadmap and issue tracking
-- Welcoming to contributions
+- MIT licensed for maximum flexibility
+- Community contributions welcome
+- Transparent development process
 
-## Design Guidelines
+## Current Status
 
-Read more about the design philosophy and guidelines behind Scilent UI [here](https://github.com/donovanallen/scilent-ui/blob/main/DESIGN.md).
+Scilent UI is currently in early development. The following components are available:
+
+- ✅ AlbumArtwork
+- ✅ ArtistLabel
+- ✅ MetadataLabel
+- ✅ Timestamp
+- ✅ Slider
+- ✅ IconButton
+- ✅ Basic MusicPlayer
+
+The following features are under development:
+
+- 🚧 Comprehensive theming system
+- 🚧 Icons package
+- 🚧 Provider integrations
+- 🚧 Advanced music player components
 
 ## Requirements
 
@@ -193,7 +242,6 @@ Storybook is powered by [Vite](https://vitejs.dev/), which provides:
 Each component in the library has:
 
 - A `.stories.tsx` file that defines various states and variants
-- A `.mdx` file for comprehensive documentation
 - Auto-generated API documentation from TypeScript types and JSDoc comments
 
 To view the Storybook documentation locally, run `pnpm storybook` and open your browser to http://localhost:6006.
@@ -203,8 +251,8 @@ To view the Storybook documentation locally, run `pnpm storybook` and open your 
 This is a monorepo managed with pnpm workspaces and Turborepo. The packages are organized as follows:
 
 - `packages/core`: Core components and utilities
-- `packages/icons`: Icon components
-- `packages/themes`: Theme definitions and utilities
+- `packages/icons`: Icon components (in development)
+- `packages/themes`: Theme definitions and utilities (planned)
 
 ### Release Process
 
