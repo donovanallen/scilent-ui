@@ -184,7 +184,7 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.1.8
         version: 1.1.8(@types/react-dom@19.0.4(@types/react@19.0.10))(@types/react@19.0.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      '@scilent-ui/icons':
+      '@scilent/icons':
         specifier: workspace:*
         version: link:../icons
       '@types/styled-components':

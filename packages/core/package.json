@@ -57,7 +57,7 @@
     "@radix-ui/react-switch": "^1.1.3",
     "@radix-ui/react-toggle-group": "^1.1.2",
     "@radix-ui/react-tooltip": "^1.1.8",
-    "@scilent-ui/icons": "workspace:*",
+    "@scilent/icons": "workspace:*",
     "@types/styled-components": "^5.1.34",
     "react-icons": "^5.5.0",
     "styled-components": "^6.1.15"
