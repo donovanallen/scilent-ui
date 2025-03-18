@@ -4,7 +4,7 @@ import React, { forwardRef } from 'react';
 import * as Primitive from '@radix-ui/react-primitive';
 import styled, { css, keyframes } from 'styled-components';
 import { IconType } from 'react-icons';
-import { Icon, ReactIconContext, IconProps } from '@scilent-ui/icons';
+import { IconProps } from '@scilent/icons';
 
 /**
  * IconButton variants
