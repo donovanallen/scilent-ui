@@ -4,6 +4,7 @@ import React, { forwardRef } from 'react';
 import * as Primitive from '@radix-ui/react-primitive';
 import styled, { css, keyframes } from 'styled-components';
 import { IconType } from 'react-icons';
+import { IconProps } from '@scilent/icons';
 
 /**
  * IconButton variants
@@ -23,7 +24,7 @@ export interface IconButtonProps
   /**
    * The icon to display
    */
-  icon: IconType;
+  icon: IconType | React.ComponentType<IconProps | any>;
 
   /**
    * The variant of the button
@@ -350,7 +351,7 @@ const StyledButton = styled(Primitive.Primitive.button)<{
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   (
     {
-      icon: Icon,
+      icon: IconComponent,
       variant = 'primary',
       size = 'md',
       isLoading = false,
@@ -399,7 +400,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         aria-busy={isLoading}
         {...props}
       >
-        <Icon
+        <IconComponent
           size={getIconSize()}
           color={iconColor}
           className={classNames.icon}

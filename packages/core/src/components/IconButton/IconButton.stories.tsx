@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { IconButton } from './IconButton';
+import { Icon } from '@scilent/icons';
 import {
   FiHeart,
   FiTrash,
@@ -83,7 +84,7 @@ type Story = StoryObj<typeof IconButton>;
  */
 export const Default: Story = {
   args: {
-    icon: FiPlay,
+    icon: () => <Icon name="Play" />,
     'aria-label': 'Play',
   },
 };
