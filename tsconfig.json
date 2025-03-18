@@ -22,15 +22,15 @@
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
-    "baseUrl": "."
-    // "paths": {
-    //   "@scilent-ui/core": ["packages/core/src"],
-    //   "@scilent-ui/core/*": ["packages/core/src/*"],
-    //   "@scilent-ui/icons": ["packages/icons/src"],
-    //   "@scilent-ui/icons/*": ["packages/icons/src/*"],
-    //   "@scilent-ui/themes": ["packages/themes/src"],
-    //   "@scilent-ui/themes/*": ["packages/themes/src/*"]
-    // }
+    "baseUrl": ".",
+    "paths": {
+      "@scilent/core": ["packages/core/src"],
+      "@scilent/core/*": ["packages/core/src/*"],
+      "@scilent/icons": ["packages/icons/src"],
+      "@scilent/icons/*": ["packages/icons/src/*"]
+      // "@scilent-ui/themes": ["packages/themes/src"],
+      // "@scilent-ui/themes/*": ["packages/themes/src/*"]
+    }
   },
   "exclude": ["node_modules", "dist", ".turbo", "coverage"]
 }
