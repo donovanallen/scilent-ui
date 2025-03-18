@@ -1,6 +1,6 @@
 {
   "name": "@scilent/icons",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Scilent Digital <hello@scilent.digital>",
   "description": "Scilent UI Icon Library",
   "main": "./dist/index.js",
