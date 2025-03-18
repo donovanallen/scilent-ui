@@ -16,41 +16,38 @@ type Story = StoryObj;
 export const AllGeneralIcons: Story = {
   render: () => {
     const icons = [
-      { name: 'House' },
-      { name: 'HouseSimple' },
-      { name: 'Gear' },
-      { name: 'Share' },
-      { name: 'Export' },
-      { name: 'ShareNetwork' },
-      { name: 'Info' },
-      { name: 'ArrowsOutSimple' },
-      { name: 'ArrowsInSimple' },
-      { name: 'ArrowsOut' },
-      { name: 'ArrowsIn' },
-      { name: 'Resize' },
-      { name: 'X' },
-      { name: 'NotePencil' },
-      { name: 'PencilSimple' },
-      { name: 'PencilSimpleLine' },
-      { name: 'ArrowRight' },
-      { name: 'ArrowUp' },
-      { name: 'ArrowDown' },
-      { name: 'ArrowLeft' },
-      { name: 'CaretRight' },
-      { name: 'CaretLeft' },
-      { name: 'CaretUp' },
-      { name: 'CaretDown' },
-      { name: 'Check' },
-      { name: 'Checks' },
-      { name: 'SealCheck' },
-      { name: 'CheckCircle' },
-      { name: 'User' },
-      { name: 'Users' },
-      { name: 'UsersThree' },
-      { name: 'UsersCheck' },
-      { name: 'UsersCircle' },
-      { name: 'Star' },
-      { name: 'Sparkle' },
+      { name: 'House', label: 'Home' },
+      { name: 'HouseSimple', label: 'Home 2' },
+      { name: 'Gear', label: 'Settings' },
+      { name: 'Share', label: 'Share' },
+      { name: 'Export', label: 'Export' },
+      { name: 'ShareNetwork', label: 'Share 2' },
+      { name: 'Info', label: 'Info' },
+      { name: 'ArrowsOutSimple', label: 'Arrow Out' },
+      { name: 'ArrowsInSimple', label: 'Arrow In' },
+      { name: 'ArrowsOut', label: 'Arrow Out 2' },
+      { name: 'ArrowsIn', label: 'Arrow In 2' },
+      { name: 'X', label: 'Close' },
+      { name: 'NotePencil', label: 'Edit' },
+      { name: 'ArrowRight', label: 'Arrow Right' },
+      { name: 'ArrowUp', label: 'Arrow Up' },
+      { name: 'ArrowDown', label: 'Arrow Down' },
+      { name: 'ArrowLeft', label: 'Arrow Left' },
+      { name: 'CaretRight', label: 'Caret Right' },
+      { name: 'CaretLeft', label: 'Caret Left' },
+      { name: 'CaretUp', label: 'Caret Up' },
+      { name: 'CaretDown', label: 'Caret Down' },
+      { name: 'Check', label: 'Check' },
+      { name: 'Checks', label: 'Checks' },
+      { name: 'SealCheck', label: 'Seal Check' },
+      { name: 'CheckCircle', label: 'Check Circle' },
+      { name: 'User', label: 'User' },
+      { name: 'Users', label: 'Users' },
+      { name: 'UsersThree', label: 'User Group' },
+      { name: 'UserCheck', label: 'User Check' },
+      { name: 'UserCircle', label: 'User Circle' },
+      { name: 'Star', label: 'Star' },
+      { name: 'Sparkle', label: 'Stars' },
     ];
     return (
       <div
@@ -64,9 +61,18 @@ export const AllGeneralIcons: Story = {
           margin: '0 auto',
         }}
       >
-        {icons.map(({ name }) => (
-          <div key={name}>
+        {icons.map(({ name, label }) => (
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+            key={name}
+          >
             <Icon size={40} name={name as keyof typeof PhosphorIcons} />
+            <p>{label}</p>
           </div>
         ))}
       </div>

@@ -15,17 +15,50 @@ type Story = StoryObj;
 export const AllAudioIcons: Story = {
   render: () => {
     const icons = [
-      { name: 'SpeakerLow' },
-      { name: 'SpeakerHigh' },
-      { name: 'SpeakerNone' },
-      { name: 'SpeakerSlash' },
-      { name: 'SpeakerX' },
-      { name: 'Equalizer' },
-      { name: 'Faders' },
-      { name: 'StandardDefinition' },
-      { name: 'HighDefinition' },
-      { name: 'SpeakerHifi' },
-      { name: 'Headphones' },
+      {
+        name: 'SpeakerLow',
+        label: 'Volume Low',
+      },
+      {
+        name: 'SpeakerHigh',
+        label: 'Volume High',
+      },
+      {
+        name: 'SpeakerNone',
+        label: 'Volume Mute',
+      },
+      {
+        name: 'SpeakerSlash',
+        label: 'Volume Mute 2',
+      },
+      {
+        name: 'SpeakerX',
+        label: 'Volume Off',
+      },
+      {
+        name: 'Equalizer',
+        label: 'Equalizer',
+      },
+      {
+        name: 'Faders',
+        label: 'Faders',
+      },
+      {
+        name: 'StandardDefinition',
+        label: 'SD',
+      },
+      {
+        name: 'HighDefinition',
+        label: 'HD',
+      },
+      {
+        name: 'SpeakerHifi',
+        label: 'Speaker',
+      },
+      {
+        name: 'Headphones',
+        label: 'Headphones',
+      },
     ];
     return (
       <div
@@ -34,14 +67,22 @@ export const AllAudioIcons: Story = {
           gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
           gap: '1.5rem',
           padding: '2rem',
-          width: '100%',
-          maxWidth: '1200px',
+          maxWidth: '100%',
           margin: '0 auto',
         }}
       >
-        {icons.map(({ name }) => (
-          <div key={name}>
+        {icons.map(({ name, label }) => (
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+            key={name}
+          >
             <Icon size={40} name={name as keyof typeof PhosphorIcons} />
+            <p>{label}</p>
           </div>
         ))}
       </div>

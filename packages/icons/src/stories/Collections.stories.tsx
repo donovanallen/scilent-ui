@@ -16,38 +16,62 @@ type Story = StoryObj;
 export const AllCollectionsIcons: Story = {
   render: () => {
     const icons = [
-      { name: 'ListPlus' },
-      { name: 'MusicNotesPlus' },
-      { name: 'MusicNotesMinus' },
-      { name: 'Plus' },
-      { name: 'Minus' },
-      { name: 'DownloadSimple' },
-      { name: 'UploadSimple' },
-      { name: 'SortAscending' },
-      { name: 'SortDescending' },
-      { name: 'FunnelSimple' },
-      { name: 'FunnelSimpleX' },
-      { name: 'SquaresFour' },
-      { name: 'Rows' },
-      { name: 'List' },
-      { name: 'Slideshow' },
-      { name: 'Books' },
-      { name: 'BookmarkSimple' },
-      { name: 'FileAudio' },
+      { name: 'DownloadSimple', label: 'Download' },
+      { name: 'UploadSimple', label: 'Upload' },
 
-      { name: 'Playlist' },
-      { name: 'Tag' },
-      { name: 'ListStar' },
-      { name: 'MagnifyingGlass' },
+      { name: 'SortAscending', label: 'Sort Ascending' },
+      { name: 'SortDescending', label: 'Sort Descending' },
+      { name: 'FunnelSimple', label: 'Filter' },
+      { name: 'FunnelSimpleX', label: 'Remove Filter' },
 
-      { name: 'Queue' },
-      { name: 'ClockCounterClockwise' },
+      { name: 'SquaresFour', label: 'Grid' },
+      { name: 'Rows', label: 'Rows' },
+      { name: 'Slideshow', label: 'Carousel' },
+
+      { name: 'Books', label: 'Library' },
+      { name: 'BookmarkSimple', label: 'Bookmark' },
+      { name: 'FileAudio', label: 'Audio File' },
+
+      { name: 'MusicNotesPlus', label: 'Add Music' },
+      { name: 'MusicNotesMinus', label: 'Remove Music' },
+      { name: 'Plus', label: 'Add' },
+      { name: 'Minus', label: 'Remove' },
+
+      { name: 'List', label: 'List' },
+      { name: 'ListPlus', label: 'Add to List' },
+      { name: 'Playlist', label: 'Playlist' },
+      { name: 'Tag', label: 'Tag/Label' },
+      { name: 'ListStar', label: 'New List' },
+      { name: 'MagnifyingGlass', label: 'Search' },
+
+      { name: 'Queue', label: 'Queue' },
+      { name: 'ClockCounterClockwise', label: 'History' },
     ];
 
     return (
-      <div>
-        {icons.map(({ name }) => (
-          <Icon size={40} name={name as keyof typeof PhosphorIcons} />
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
+          gap: '1.5rem',
+          padding: '2rem',
+          maxWidth: '100%',
+          margin: '0 auto',
+        }}
+      >
+        {icons.map(({ name, label }) => (
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '0.5rem',
+            }}
+            key={name}
+          >
+            <Icon size={40} name={name as keyof typeof PhosphorIcons} />
+            <p>{label}</p>
+          </div>
         ))}
       </div>
     );
