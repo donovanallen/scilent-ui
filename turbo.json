@@ -49,8 +49,9 @@
       "cache": false
     },
     "typecheck": {
+      "dependsOn": ["^build"],
       "outputs": [],
-      "cache": true
+      "cache": false
     }
   }
 }
