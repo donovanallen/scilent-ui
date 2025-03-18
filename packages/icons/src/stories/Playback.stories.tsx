@@ -15,19 +15,19 @@ type Story = StoryObj;
 export const AllPlaybackIcons: Story = {
   render: () => {
     const icons = [
-      { name: 'PlayPause' },
-      { name: 'Play' },
-      { name: 'Pause' },
-      { name: 'Stop' },
-      { name: 'SkipBack' },
-      { name: 'Rewind' },
-      { name: 'FastForward' },
-      { name: 'SkipForward' },
-      { name: 'Shuffle' },
-      { name: 'ShuffleAngular' },
-      { name: 'ShuffleSimple' },
-      { name: 'Repeat' },
-      { name: 'RepeatOnce' },
+      { name: 'PlayPause', label: 'Play/Pause' },
+      { name: 'Play', label: 'Play' },
+      { name: 'Pause', label: 'Pause' },
+      { name: 'Stop', label: 'Stop' },
+      { name: 'SkipBack', label: 'Skip Back' },
+      { name: 'Rewind', label: 'Rewind' },
+      { name: 'FastForward', label: 'Fast Forward' },
+      { name: 'SkipForward', label: 'Skip Forward' },
+      { name: 'Shuffle', label: 'Shuffle' },
+      { name: 'ShuffleAngular', label: 'Shuffle 2' },
+      { name: 'ShuffleSimple', label: 'Shuffle 3' },
+      { name: 'Repeat', label: 'Repeat' },
+      { name: 'RepeatOnce', label: 'Repeat Once' },
     ];
     return (
       <div
@@ -41,7 +41,7 @@ export const AllPlaybackIcons: Story = {
           margin: '0 auto',
         }}
       >
-        {icons.map(({ name }) => (
+        {icons.map(({ name, label }) => (
           <div
             key={name}
             style={{
@@ -66,7 +66,7 @@ export const AllPlaybackIcons: Story = {
                 fontWeight: 500,
               }}
             >
-              {name}
+              {label}
             </div>
           </div>
         ))}

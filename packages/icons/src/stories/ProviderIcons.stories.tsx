@@ -28,8 +28,7 @@ export const AllProviderIcons: Story = {
           gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
           gap: '1.5rem',
           padding: '2rem',
-          width: '100%',
-          maxWidth: '1200px',
+          maxWidth: '100%',
           margin: '0 auto',
         }}
       >
