@@ -21,18 +21,26 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-    "test": "jest --passWithNoTests"
+    "test": "jest --passWithNoTests",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "peerDependencies": {
     "react": "catalog:"
   },
   "devDependencies": {
+    "@storybook/react": "^8.6.4",
+    "@storybook/react-vite": "^8.6.4",
+    "@storybook/addon-essentials": "^8.6.4",
+    "@storybook/builder-vite": "^8.6.4",
     "@types/react": "catalog:",
     "eslint": "catalog:",
     "eslint-config-custom": "*",
     "react": "catalog:",
+    "storybook": "^8.6.4",
     "tsup": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "vite": "^6.2.0"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.7",

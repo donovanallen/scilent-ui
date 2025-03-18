@@ -264,6 +264,18 @@ importers:
         specifier: ^5.5.0
         version: 5.5.0(react@19.0.0)
     devDependencies:
+      '@storybook/addon-essentials':
+        specifier: ^8.6.4
+        version: 8.6.4(@types/react@19.0.10)(storybook@8.6.4(prettier@3.5.3))
+      '@storybook/builder-vite':
+        specifier: ^8.6.4
+        version: 8.6.4(storybook@8.6.4(prettier@3.5.3))(vite@6.2.0(@types/node@22.13.9)(jiti@2.4.2)(yaml@2.7.0))
+      '@storybook/react':
+        specifier: ^8.6.4
+        version: 8.6.4(@storybook/test@8.6.4(storybook@8.6.4(prettier@3.5.3)))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(storybook@8.6.4(prettier@3.5.3))(typescript@5.8.2)
+      '@storybook/react-vite':
+        specifier: ^8.6.4
+        version: 8.6.4(@storybook/test@8.6.4(storybook@8.6.4(prettier@3.5.3)))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(rollup@4.34.9)(storybook@8.6.4(prettier@3.5.3))(typescript@5.8.2)(vite@6.2.0(@types/node@22.13.9)(jiti@2.4.2)(yaml@2.7.0))
       '@types/react':
         specifier: 'catalog:'
         version: 19.0.10
@@ -276,12 +288,18 @@ importers:
       react:
         specifier: 'catalog:'
         version: 19.0.0
+      storybook:
+        specifier: ^8.6.4
+        version: 8.6.4(prettier@3.5.3)
       tsup:
         specifier: 'catalog:'
         version: 8.4.0(jiti@2.4.2)(postcss@8.5.3)(typescript@5.8.2)(yaml@2.7.0)
       typescript:
         specifier: 'catalog:'
         version: 5.8.2
+      vite:
+        specifier: ^6.2.0
+        version: 6.2.0(@types/node@22.13.9)(jiti@2.4.2)(yaml@2.7.0)
 
 packages:
   '@adobe/css-tools@4.4.2':

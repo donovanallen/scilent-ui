@@ -1,22 +1,11 @@
 import { SVGProps } from 'react';
 import { IconType } from 'react-icons';
+// import { IconType as PhosphorIconType } from '@phosphor-icons/react'
 
 /**
  * Supported authentication providers
  */
-export type ProviderType =
-  | 'spotify'
-  | 'apple'
-  | 'tidal'
-  | 'google'
-  | 'facebook'
-  | 'twitter'
-  | 'github'
-  | 'discord'
-  | 'twitch'
-  | 'microsoft'
-  | 'amazon'
-  | 'custom';
+export type ProviderType = 'spotify' | 'apple' | 'tidal' | 'custom';
 
 /**
  * Provider icon properties
