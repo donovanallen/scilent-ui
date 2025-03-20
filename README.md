@@ -8,9 +8,12 @@ A component and utility library for music-based applications and UIs.
 
 <!-- [![Documentation](https://img.shields.io/badge/docs-website-blue)](https://your-docs-site.com) -->
 <!-- [![codecov](https://codecov.io/gh/donovanallen/scilent-ui/branch/main/graph/badge.svg)](https://codecov.io/gh/donovanallen/scilent-ui) -->
-<!-- [![npm version](https://img.shields.io/npm/v/@scilent-ui/core.svg?style=flat)](https://www.npmjs.com/package/@scilent-ui/core) -->
-<!-- [![npm downloads](https://img.shields.io/npm/dm/@scilent-ui/core.svg?style=flat)](https://www.npmjs.com/package/@scilent-ui/core) -->
-<!-- [![npm bundle size](https://img.shields.io/bundlephobia/minzip/@scilent-ui/core)](https://bundlephobia.com/package/@scilent-ui/core) -->
+[![npm version](https://img.shields.io/npm/v/@scilent/core.svg?style=flat)](https://www.npmjs.com/package/@scilent/core)
+<!-- [![npm downloads](https://img.shields.io/npm/dm/@scilent/core.svg?style=flat)](https://www.npmjs.com/package/@scilent/core) -->
+<!-- [![npm bundle size](https://img.shields.io/bundlephobia/minzip/@scilent/core)](https://bundlephobia.com/package/@scilent/core) -->
+
+[![npm](https://img.shields.io/npm/dw/@scilent/core?label=downloads%20per%20week)](https://www.npmjs.com/package/@scilent/core)
+[![npm](https://img.shields.io/npm/dt/@scilent/core?label=total%20downloads)](https://www.npmjs.com/package/@scilent/core)
 
 <!-- [![dependencies Status](https://status.david-dm.org/gh/donovanallen/scilent-ui.svg)](https://david-dm.org/donovanallen/scilent-ui)
 [![devDependencies Status](https://status.david-dm.org/gh/donovanallen/scilent-ui.svg?type=dev)](https://david-dm.org/donovanallen/scilent-ui?type=dev) -->
@@ -20,8 +23,6 @@ A component and utility library for music-based applications and UIs.
 [![Turborepo](https://img.shields.io/badge/Turborepo-EF4444?logo=turborepo&logoColor=white)](https://turbo.build/)
 [![Storybook](https://img.shields.io/badge/Storybook-FF4785?logo=storybook&logoColor=white)](https://storybook.js.org/)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Table of Contents
 
@@ -280,5 +281,6 @@ pnpm release
 See the [Contributing](https://github.com/donovanallen/scilent-ui/blob/main/CONTRIBUTING.md) readme for more instructions on how to contribute to this project.
 
 ## License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 MIT © [Scilent Digital](https://scilent.digital)
