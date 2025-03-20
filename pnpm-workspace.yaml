@@ -1,7 +1,7 @@
 packages:
   - 'packages/core'
   - 'packages/icons'
-  # - 'apps/*'
+  - 'apps/*'
   # - 'playgrounds/*'
 
 catalog:

@@ -1,0 +1,397 @@
+@import "tailwindcss";
+
+/* Base styles */
+:root {
+  color-scheme: dark;
+}
+
+/* Base styles */
+html {
+  background-color: #24262a; /* scilent-950 */
+  color: #f5f5f6; /* scilent-50 */
+}
+
+body {
+  font-family: "Space Grotesk Variable", sans-serif;
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-family: "Space Grotesk Variable", sans-serif;
+  letter-spacing: 0.05em;
+  font-size: 4rem;
+}
+
+h2, h3, h4, h5, h6 {
+  font-family: "Major Mono Display", sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+code {
+  font-family: "Space Mono", monospace;
+}
+
+/* Layout */
+/* .min-h-screen {
+  min-height: 100vh;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.inset-0 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+} */
+
+/* Container and spacing */
+/* .max-w-7xl {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .max-w-7xl {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .max-w-7xl {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+} */
+
+/* Typography */
+/* .text-center {
+  text-align: center;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .text-4xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-4xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+} */
+
+/* Colors */
+/* .text-scilent-300 {
+  color: #b0b4b9;
+}
+
+.text-scilent-400 {
+  color: #888d95;
+}
+
+.text-scilent-950 {
+  color: #24262a;
+} */
+
+/* Backgrounds and gradients */
+/* .bg-gradient {
+  background: linear-gradient(135deg, #36383e 0%, #24262a 50%, #000000 100%);
+  animation: gradient-x 15s ease infinite;
+}
+
+@keyframes gradient-x {
+  0%, 100% {
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+} */
+
+/* Components */
+.logo {
+  width: 8rem;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* @keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+} */
+
+/* Buttons */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.button-primary {
+  background-color: #f5f5f6;
+  color: #24262a;
+}
+
+.button-primary:hover {
+  background-color: #e6e7e9;
+}
+
+.button-secondary {
+  border: 1px solid #474b53;
+  color: #f5f5f6;
+}
+
+.button-secondary:hover {
+  background-color: rgba(71, 75, 83, 0.5);
+}
+
+/* Grid layout */
+/* .grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+} */
+
+/* Component preview cards */
+.component-preview {
+  position: relative;
+  border: 1px solid #3d4046;
+  border-radius: 0.5rem;
+  background-color: rgba(36, 38, 42, 0.3);
+  backdrop-filter: blur(8px);
+  padding: 1.5rem;
+  height: 16rem;
+}
+
+.component-preview::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(61, 64, 70, 0.5), rgba(54, 56, 62, 0.5));
+  border-radius: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.component-preview:hover::before {
+  opacity: 1;
+}
+
+/* Footer */
+/* .footer {
+  background-color: #000;
+  padding: 3rem 0;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.footer-logo {
+  height: 2rem;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-link {
+  color: #888d95;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: #f5f5f6;
+} */
+
+/* Utilities */
+/* .flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.py-24 {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+@media (min-width: 1024px) {
+  .py-32 {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+} */
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-scilent-950 text-scilent-50;
+  }
+  
+  body {
+    @apply font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-medium tracking-tight;
+  }
+}
+
+@layer components {
+  .logo {
+    @apply w-32 h-32 animate-float;
+  }
+} */
+
+/* Rest of the original CSS content remains unchanged */
+
+/* Documentation section */
+.docs-grid {
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+  .docs-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  background-color: rgba(36, 38, 42, 0.6);
+  border: 1px solid #3d4046;
+  backdrop-filter: blur(8px);
+}
+
+.code-preview {
+  position: relative;
+  border: 1px solid #3d4046;
+  border-radius: 0.5rem;
+  background-color: rgba(36, 38, 42, 0.6);
+  backdrop-filter: blur(8px);
+  padding: 1.5rem;
+}
+
+.code-preview pre {
+  margin: 0;
+  white-space: pre;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
