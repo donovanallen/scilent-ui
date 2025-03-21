@@ -3,7 +3,7 @@ import './App.css';
 import { IconButton } from '@scilent/core';
 import { Icon } from '@scilent/icons';
 import { ScriptCopyBtn } from './ScriptCopy';
-import { MagicCard } from './MagicCard';
+// import { MagicCard } from './MagicCard';
 import { AuroraText } from './AuroraText';
 import { AnimatedShinyText } from './ShinyText';
 import { Terminal } from './Terminal';
@@ -29,13 +29,13 @@ const FeatureCard = ({
   description?: string;
 }) => (
   <div className="flex flex-col gap-12 border border-scilent-800 rounded-lg p-6 w-full">
-    <MagicCard>
-      {icon && <Icon name={icon} size={64} className="ml-auto" />}
-      <div className="flex flex-col gap-2 items-start justify-end w-4/5">
-        <span className="text-4xl font-semibold mb-2">{title}</span>
-        <p className="text-scilent-400 text-base">{description}</p>
-      </div>
-    </MagicCard>
+    {/* <MagicCard> */}
+    {icon && <Icon name={icon} size={64} className="ml-auto" />}
+    <div className="flex flex-col gap-2 items-start justify-end w-4/5">
+      <span className="text-4xl font-semibold mb-2">{title}</span>
+      <p className="text-scilent-400 text-base">{description}</p>
+    </div>
+    {/* </MagicCard> */}
   </div>
 );
 
