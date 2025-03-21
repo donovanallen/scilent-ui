@@ -11,7 +11,7 @@
     "typescript"
   ],
   "license": "MIT",
-  "packageManager": "pnpm@10.5.2",
+  "packageManager": "pnpm@10.6.5",
   "engines": {
     "node": ">=23.0.0"
   },
@@ -22,6 +22,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo watch dev --continue",
+    "dev:showcase": "turbo run dev --filter=@scilent/showcase",
     "dev:core": "turbo dev --filter=@scilent/core",
     "dev:icons": "turbo run storybook --filter=@scilent/icons",
     "format": "turbo run format --continue -- --cache --cache-location .cache/.prettiercache",
