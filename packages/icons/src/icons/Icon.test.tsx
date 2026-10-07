@@ -48,7 +48,9 @@ describe('Icon', () => {
 
   it('renders null and logs an error for an unknown icon name', () => {
     const err = jest.spyOn(console, 'error').mockImplementation(() => {});
-    const { container } = render(<Icon name={'NotARealIcon'} />);
+    const { container } = render(
+      <Icon name={'NotARealIcon' as Parameters<typeof Icon>[0]['name']} />
+    );
     expect(container.querySelector('span')).toBeNull();
     expect(err).toHaveBeenCalledWith(expect.stringContaining('NotARealIcon'));
     err.mockRestore();
@@ -66,9 +68,8 @@ describe('Icon', () => {
     svg.removeAttribute('aria-label');
     svg.removeAttribute('role');
     // Known source issue: the wrapper span uses aria-label without a role
-    // (aria-prohibited-attr). Assert it is the only violation until fixed.
+    // AccessibleIcon now has role="img" when labelled — no violations.
     const { violations } = await axe(container);
-    expect(violations).toHaveLength(1);
-    expect(violations[0].id).toBe('aria-prohibited-attr');
+    expect(violations).toHaveLength(0);
   });
 });

@@ -878,6 +878,12 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
     },
     ref
   ) => {
+    // A11y: aria-label/-labelledby describe the thumb(s), not the Radix Root.
+    const {
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledBy,
+      ...restProps
+    } = props as Record<string, unknown>;
     const [localValue, setLocalValue] = useState<number[]>(value);
     const [isDragging, setIsDragging] = useState<boolean>(false);
     const [isHovering, setIsHovering] = useState<boolean>(false);
@@ -1046,7 +1052,7 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
         onPointerUp={() => setIsDragging(false)}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
-        {...props}
+        {...restProps}
       >
         <StyledSliderTrack
           data-slider-track
@@ -1094,6 +1100,12 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
             onBlur={() => setActiveThumbIndex(null)}
             onPointerDown={() => setActiveThumbIndex(i)}
             onPointerUp={() => !isDragging && setActiveThumbIndex(null)}
+            aria-label={
+              ariaLabel
+                ? `${ariaLabel as string}${localValue.length > 1 ? ` ${i + 1}` : ''}`
+                : undefined
+            }
+            aria-labelledby={ariaLabelledBy as string | undefined}
           >
             {customThumb}
           </StyledSliderThumb>

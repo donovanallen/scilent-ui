@@ -47,8 +47,7 @@ describe('AccessibleIcon', () => {
       );
       const span = screen.getByTestId('child').closest('span')!;
       expect(span).toHaveAttribute('aria-label', 'Play music');
-      expect(span).not.toHaveAttribute('aria-hidden');
-      expect(span).not.toHaveAttribute('role');
+      expect(span).toHaveAttribute('role', 'img');
     });
 
     it('applies aria-labelledby when given', () => {
@@ -71,12 +70,9 @@ describe('AccessibleIcon', () => {
       // labelled child inside a labelled span should not trip axe
       const span = container.querySelector('span')!;
       span.querySelector('svg')?.remove();
-      // Known source issue: AccessibleIcon sets aria-label on a span with no
-      // role, which axe reports as aria-prohibited-attr. Assert it is the only
-      // violation until the component adds a valid role (e.g. role="img").
+      // With role="img" the labelled span is a valid AX target — no violations.
       const { violations } = await axe(container);
-      expect(violations).toHaveLength(1);
-      expect(violations[0].id).toBe('aria-prohibited-attr');
+      expect(violations).toHaveLength(0);
     });
   });
 

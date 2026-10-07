@@ -84,9 +84,8 @@ describe('ProviderIcon', () => {
     if (svg.hasAttribute('aria-label')) svg.removeAttribute('aria-label');
     if (svg.hasAttribute('role')) svg.removeAttribute('role');
     // Known source issue: wrapper span uses aria-label without a role
-    // (aria-prohibited-attr). Assert it is the only violation until fixed.
+    // AccessibleIcon now has role="img" when labelled — no violations.
     const { violations } = await axe(container);
-    expect(violations).toHaveLength(1);
-    expect(violations[0].id).toBe('aria-prohibited-attr');
+    expect(violations).toHaveLength(0);
   });
 });

@@ -781,6 +781,7 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
           platform={platform}
           thumbVisibility="hover"
           style={{ margin: 0 }}
+          aria-label="Track progress"
         />
       )}
 
@@ -902,6 +903,7 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
               platform={platform}
               thumbVisibility="hover"
               style={{ margin: 0 }}
+              aria-label="Track progress"
             />
           </CompactProgressContainer>
         )}
@@ -922,6 +924,7 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
               disabled={!isLoaded}
               platform={platform}
               thumbVisibility={platform === 'spotify' || platform === 'apple' ? 'hover' : 'always'}
+              aria-label="Track progress"
             />
             <TimeDisplay $platform={platform}>
               <Timestamp value={currentTime} format="duration" variant="muted" size="sm" />
@@ -1073,6 +1076,7 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({
             variant={platform === 'spotify' || platform === 'apple' ? 'minimal' : 'minimal'}
             platform={platform}
             thumbVisibility={platform === 'spotify' || platform === 'apple' ? 'hover' : 'always'}
+            aria-label="Volume"
           />
         </VolumeContainer>
       )}

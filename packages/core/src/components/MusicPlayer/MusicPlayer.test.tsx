@@ -321,17 +321,7 @@ describe('MusicPlayer', () => {
       const { container } = render(<MusicPlayer track={rock} />);
       load(container);
       const results = await axe(container);
-      // KNOWN ISSUE (documented, not fixed here — component source is off-limits
-      // for tests): Slider thumbs expose role="slider" without aria-label, so
-      // axe flags aria-input-field-name on the progress + volume sliders.
-      const otherViolations = results.violations.filter(
-        v =>
-          !(
-            v.id === 'aria-input-field-name' &&
-            v.nodes.every(n => String(n.html).includes('data-slider-thumb'))
-          )
-      );
-      expect(otherViolations).toHaveLength(0);
+      expect(results).toHaveNoViolations();
     });
 
     it('has no axe violations (compact variant)', async () => {

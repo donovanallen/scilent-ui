@@ -35,6 +35,26 @@ const nameThumb = (container: HTMLElement, name: string) => {
   thumb?.setAttribute('aria-label', name);
 };
 
+// A11y fix regression guard: aria-label/-labelledby must land on the THUMB
+// (role="slider"), not the Radix Root.
+it('puts aria-label and aria-labelledby on the thumb, not the root', () => {
+  render(<Slider value={[40]} aria-label="Volume" aria-labelledby="vol-label" />);
+  const thumb = getThumb();
+  expect(thumb).toHaveAttribute('aria-label', 'Volume');
+  expect(thumb).toHaveAttribute('aria-labelledby', 'vol-label');
+  const root = thumb.closest('.slider')!;
+  expect(root).not.toHaveAttribute('aria-label');
+  expect(root).not.toHaveAttribute('aria-labelledby');
+});
+
+it('suffixes multi-thumb aria-labels with the thumb index', () => {
+  render(<Slider value={[30, 70]} aria-label="Range" />);
+  const thumbs = screen.getAllByRole('slider');
+  expect(thumbs).toHaveLength(2);
+  expect(thumbs[0]).toHaveAttribute('aria-label', 'Range 1');
+  expect(thumbs[1]).toHaveAttribute('aria-label', 'Range 2');
+});
+
 describe('Slider', () => {
   it('renders a slider with the default value', () => {
     render(<Slider value={[40]} aria-label="Volume" />);
