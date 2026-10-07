@@ -22,7 +22,12 @@ Created Oct 2026 · Paced alongside batch 3 + Scilent roadmap
 
 - Monorepo: pnpm + Turborepo; packages/core (10 music-specific components), icons, themes
   (barely started); apps/docs, examples, showcase; Storybook playground. MIT. Changesets-era
-  hygiene (husky, commitlint). NOT yet on npm. GitHub: donovanallen/scilent-ui.
+  hygiene (husky, commitlint). npm: `@scilent/core@2.0.0` and `@scilent/icons@1.1.0` are
+  ALREADY published (Mar 2025, under the `scilent` org, maintainer donovanallen) — Phase 1
+  updates existing packages rather than first-publishing. `@scilent-ui` org scope and
+  unscoped `scilent-ui` name are still available/404. `@scilent-ui/themes` is unpublished
+  (local scaffold only). Note: npm CLI on this machine is unauthenticated (whoami → 401);
+  publishing needs a fresh login/token. GitHub: donovanallen/scilent-ui.
 - Branch situation: working tree on `landing-page` with ~13 files uncommitted (AlbumArtwork
   work, +803/−258); stash "music-player-ui" on dev; ~25 stale branches (SCI-\* tickets,
   hotfixes, album-artwork forks). docs app appears early-stage.
