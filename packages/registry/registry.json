@@ -1,0 +1,110 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "scilent-ui",
+  "homepage": "https://scilent-ui.dev",
+  "items": [
+    {
+      "name": "artist-label",
+      "type": "registry:ui",
+      "title": "ArtistLabel",
+      "description": "Formatted artist name list with custom delimiters.",
+      "files": [
+        "src/components/ArtistLabel/ArtistLabel.tsx",
+        "src/components/MetadataLabel/MetadataLabel.tsx",
+        "src/types/artist.ts",
+        "src/utils/artist.ts",
+        "src/utils/metadata.ts"
+      ]
+    },
+    {
+      "name": "album-artwork",
+      "type": "registry:ui",
+      "title": "AlbumArtwork",
+      "description": "Album artwork image with placeholder, fallback, and expandable dialog modes.",
+      "files": ["src/components/Artwork/AlbumArtwork.tsx"]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Album/track card with artwork, metadata, and optional play overlay.",
+      "files": [
+        "src/components/ArtistLabel/ArtistLabel.tsx",
+        "src/components/Artwork/AlbumArtwork.tsx",
+        "src/components/Card/Card.tsx",
+        "src/components/MetadataLabel/MetadataLabel.tsx",
+        "src/types/artist.ts",
+        "src/types/artwork.ts",
+        "src/types/colors.ts",
+        "src/types/datetime.ts",
+        "src/types/index.ts",
+        "src/types/theme.ts",
+        "src/utils/artist.ts",
+        "src/utils/metadata.ts"
+      ]
+    },
+    {
+      "name": "icon-button",
+      "type": "registry:ui",
+      "title": "IconButton",
+      "description": "Platform-aware icon button with variants, sizes, loading and enabled states.",
+      "files": ["src/components/IconButton/IconButton.tsx"]
+    },
+    {
+      "name": "metadata-label",
+      "type": "registry:ui",
+      "title": "MetadataLabel",
+      "description": "Ellipsizing metadata label with hover tooltip.",
+      "files": ["src/components/MetadataLabel/MetadataLabel.tsx", "src/utils/metadata.ts"]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "Radix-based slider with platform themes, buffer display, ticks, labels, and tooltips.",
+      "files": ["src/components/Slider/Slider.tsx"]
+    },
+    {
+      "name": "timestamp",
+      "type": "registry:ui",
+      "title": "Timestamp",
+      "description": "Duration/relative-time formatting with Intl presets.",
+      "files": [
+        "src/components/MetadataLabel/MetadataLabel.tsx",
+        "src/components/Timestamp/Timestamp.tsx",
+        "src/components/Timestamp/utils.ts",
+        "src/types/artist.ts",
+        "src/types/artwork.ts",
+        "src/types/colors.ts",
+        "src/types/datetime.ts",
+        "src/types/index.ts",
+        "src/types/theme.ts",
+        "src/utils/metadata.ts"
+      ]
+    },
+    {
+      "name": "music-player",
+      "type": "registry:block",
+      "title": "MusicPlayer",
+      "description": "Full-featured music player block: transport, progress, volume, track metadata.",
+      "files": [
+        "src/components/ArtistLabel/ArtistLabel.tsx",
+        "src/components/Artwork/AlbumArtwork.tsx",
+        "src/components/IconButton/IconButton.tsx",
+        "src/components/MetadataLabel/MetadataLabel.tsx",
+        "src/components/MusicPlayer/MusicPlayer.tsx",
+        "src/components/Slider/Slider.tsx",
+        "src/components/Timestamp/Timestamp.tsx",
+        "src/components/Timestamp/utils.ts",
+        "src/types/artist.ts",
+        "src/types/artwork.ts",
+        "src/types/colors.ts",
+        "src/types/datetime.ts",
+        "src/types/index.ts",
+        "src/types/theme.ts",
+        "src/utils/artist.ts",
+        "src/utils/metadata.ts"
+      ]
+    }
+  ]
+}

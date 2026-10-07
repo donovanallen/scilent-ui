@@ -1,0 +1,10 @@
+{
+  "name": "@scilent/docs",
+  "version": "0.0.1",
+  "private": true,
+  "description": "scilent-ui docs site stub — serves the shadcn-style registry at /r/<name> and will host live demos (Phase 2).",
+  "scripts": {
+    "dev": "npx serve public -l 4321",
+    "build": "mkdir -p dist && cp -R public/* dist/"
+  }
+}
