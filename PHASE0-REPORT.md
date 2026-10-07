@@ -69,23 +69,19 @@ shadcn registry structure (from ui.shadcn.com/docs/registry):
 - PLAN.md npm facts updated (packages already published; scopes available; CLI unauthenticated).
 - WIP working tree and untracked files untouched, per Donovan's "parked" decision.
 
-## 7. Stash disposition — NOT dropped, awaiting Donovan
+## 7. Stash disposition — RESOLVED (Donovan approved option a, Oct 7)
 
-Supersedence hypothesis FAILED verification. Token-level diff of stash "music-player-ui"
-(2025-03-18) vs working tree:
+The 3 stash-only story variants (VariantComparison, SizeAndThemeComparison, ControlOptions)
+were ported from the stash's MusicPlayer.stories.tsx into the working tree's
+MusicPlayer/MusicPlayer.stories.tsx (adapted to tree conventions; all props and
+SAMPLE_TRACKS keys verified to exist in the current components). Verified: core build
+passes, `tsc --noEmit` passes, 5 stories present (Default, VariantComparison,
+SizeAndThemeComparison, ControlOptions, PlatformComparison). Stash "music-player-ui"
+dropped (was ee28df8d) AFTER verification, per the keep-until-builds rule.
 
-- Formatting-only differences (prettier/arrow styles) for AlbumArtwork, Card, sampleData —
-  whitespace-normalized identical.
-- Tree is newer for IconButton, Slider, MusicPlayer.tsx (extra imports, integrated refactor).
-- **Real content only in the stash**: MusicPlayer.stories.tsx in the stash has 5 stories
-  (Default, VariantComparison, SizeAndThemeComparison, ControlOptions, PlatformComparison);
-  the tree has only 2 (Default, PlatformComparison). The stash-only story variants
-  (VariantComparison, SizeAndThemeComparison, ControlOptions) exist nowhere else.
-- A copy of the stash version is extracted to /tmp/stash-extract/MusicPlayer.stories.stash-version.tsx
-  (ephemeral — regenerate from stash if needed).
-
-Decision needed from Donovan: recover the 3 missing story variants into the working tree,
-or accept their loss and drop the stash. Stash left untouched.
+Final state: working tree = the same 20 parked WIP entries (stories port lives inside the
+untracked MusicPlayer/ dir); stash list empty; branches = main, dev, landing-page,
+SCI-93-search-component only. Nothing else changed.
 
 Historical proposal (superseded by §6 above — items 1 done; see §7 for stash):
 
