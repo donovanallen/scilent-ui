@@ -65,6 +65,7 @@
     "@typescript-eslint/eslint-plugin": "^8.26.0",
     "@typescript-eslint/parser": "^8.26.0",
     "babel-jest": "^29.7.0",
+    "@changesets/cli": "^2.29.4",
     "eslint": "catalog:",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",

@@ -1,6 +1,7 @@
 {
   "name": "@scilent-ui/themes",
   "version": "0.0.1",
+  "private": true,
   "author": "Scilent Digital <hello@scilent.digital>",
   "description": "Scilent UI Theme Library",
   "main": "./dist/index.js",
