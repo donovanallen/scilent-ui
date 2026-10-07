@@ -7,6 +7,11 @@ import { IconType } from 'react-icons';
 import { IconProps } from '@scilent/icons';
 
 /**
+ * Platform variants for styling
+ */
+export type IconButtonPlatform = 'default' | 'spotify' | 'apple' | 'tidal' | 'custom';
+
+/**
  * IconButton variants
  */
 export type IconButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost';
@@ -105,6 +110,19 @@ export interface IconButtonProps
    * Custom loading indicator component
    */
   loadingIndicator?: React.ReactNode;
+
+  /**
+   * The platform styling to apply
+   * @default 'default'
+   */
+  platform?: IconButtonPlatform;
+
+  /**
+   * Whether the button is in an enabled/active state (e.g. shuffle enabled, repeat enabled)
+   * Only used for certain platform variants
+   * @default false
+   */
+  isEnabled?: boolean;
 }
 
 // Animation for button press
@@ -166,6 +184,31 @@ const LoadingSpinner = styled.div<{ $size: IconButtonSize; $color?: string }>`
   }}
 `;
 
+// Add enabled indicator styling
+const EnabledIndicator = styled.div<{
+  $size: IconButtonSize;
+  $platform?: IconButtonPlatform;
+}>`
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #1db954;
+  transition: all 0.2s ease;
+
+  ${props => {
+    if (props.$platform === 'spotify') {
+      return css`
+        background-color: #1db954;
+      `;
+    }
+    return null;
+  }}
+`;
+
 // Styled button component
 const StyledButton = styled(Primitive.Primitive.button)<{
   $variant: IconButtonVariant;
@@ -174,6 +217,8 @@ const StyledButton = styled(Primitive.Primitive.button)<{
   $disabled: boolean;
   $animate: boolean;
   $colors?: IconButtonProps['colors'];
+  $platform?: IconButtonPlatform;
+  $isEnabled?: boolean;
 }>`
   position: relative;
   display: inline-flex;
@@ -214,8 +259,127 @@ const StyledButton = styled(Primitive.Primitive.button)<{
     }
   }}
 
-  /* Variant styles */
-  ${({ $variant, $colors }) => {
+  /* Platform-specific styles */
+  ${props => {
+    if (props.$platform === 'spotify') {
+      return css`
+        position: relative;
+        background-color: transparent;
+        color: ${props.$disabled
+          ? 'rgba(255, 255, 255, 0.3)'
+          : props.$isEnabled
+            ? '#1db954'
+            : 'rgba(255, 255, 255, 0.7)'};
+        transition: all 0.2s ease;
+
+        &:hover:not(:disabled) {
+          color: ${props.$isEnabled ? '#1ed760' : '#ffffff'};
+          transform: scale(1.05);
+        }
+
+        &:active:not(:disabled) {
+          transform: scale(0.95);
+        }
+
+        ${props.$variant === 'ghost' &&
+        css`
+          &:hover:not(:disabled) {
+            background-color: transparent;
+          }
+        `}
+
+        ${props.$variant === 'primary' &&
+        css`
+          background-color: #1db954;
+          color: #000000;
+
+          &:hover:not(:disabled) {
+            background-color: #1ed760;
+            transform: scale(1.05);
+          }
+
+          &:active:not(:disabled) {
+            background-color: #1aa34a;
+          }
+        `}
+      `;
+    }
+
+    if (props.$platform === 'apple') {
+      return css`
+        /* Apple Music uses a clean design with red accents */
+        background-color: ${props.$variant === 'ghost' ? 'transparent' : '#ffffff'};
+        color: ${props.$variant === 'primary' ? '#ffffff' : '#fa586a'};
+
+        &:hover:not(:disabled) {
+          background-color: ${props.$variant === 'ghost' ? 'rgba(0, 0, 0, 0.05)' : '#f8f8f8'};
+        }
+
+        &:active:not(:disabled) {
+          background-color: ${props.$variant === 'ghost' ? 'rgba(0, 0, 0, 0.1)' : '#f0f0f0'};
+        }
+
+        /* Apple's primary action button (play/pause) */
+        ${props.$variant === 'primary' &&
+        css`
+          background-color: #fa586a;
+          background-image: linear-gradient(to bottom right, #fa586a, #fb8c62);
+
+          &:hover:not(:disabled) {
+            background-color: #ff6b7e;
+            background-image: linear-gradient(to bottom right, #ff6b7e, #fc9d73);
+          }
+
+          &:active:not(:disabled) {
+            background-color: #e54d5f;
+            background-image: linear-gradient(to bottom right, #e54d5f, #ea8057);
+          }
+        `}
+      `;
+    }
+
+    if (props.$platform === 'tidal') {
+      return css`
+        /* Tidal uses a minimalist black and white design */
+        background-color: ${props.$variant === 'ghost' ? 'transparent' : '#ffffff'};
+        color: ${props.$variant === 'primary' ? '#ffffff' : '#ffffff'};
+        border-radius: ${props.$variant === 'primary' ? '50%' : '0'};
+
+        &:hover:not(:disabled) {
+          background-color: ${props.$variant === 'ghost' ? 'rgba(255, 255, 255, 0.1)' : '#f0f0f0'};
+        }
+
+        &:active:not(:disabled) {
+          background-color: ${props.$variant === 'ghost' ? 'rgba(255, 255, 255, 0.15)' : '#e0e0e0'};
+        }
+
+        /* Tidal's primary action button (play/pause) */
+        ${props.$variant === 'primary' &&
+        css`
+          background-color: #ffffff;
+          color: #000000;
+
+          &:hover:not(:disabled) {
+            background-color: #f0f0f0;
+          }
+
+          &:active:not(:disabled) {
+            background-color: #e0e0e0;
+          }
+        `}
+      `;
+    }
+
+    return null; // Return to default styling for other platforms
+  }}
+
+  /* Variant styles - only applied when platform is default or custom */
+  ${({ $variant, $colors, $platform }) => {
+    // Skip default variant styling if a specific platform is selected
+    if ($platform && $platform !== 'default' && $platform !== 'custom') {
+      return null;
+    }
+
     const customBg = $colors?.background;
     const customHover = $colors?.hover;
     const customActive = $colors?.active;
@@ -281,13 +445,26 @@ const StyledButton = styled(Primitive.Primitive.button)<{
   }}
 
   /* Animation styles */
-  ${({ $animate }) =>
-    $animate &&
-    css`
-      &:active:not(:disabled) {
-        animation: ${pressAnimation} 0.2s ease;
-      }
-    `}
+  ${({ $animate, $platform }) => {
+    // Spotify has its own animation style
+    if ($platform === 'spotify') {
+      return css`
+        transition: all 0.1s ease;
+        &:active:not(:disabled) {
+          transform: scale(0.95);
+        }
+      `;
+    }
+
+    return (
+      $animate &&
+      css`
+        &:active:not(:disabled) {
+          animation: ${pressAnimation} 0.2s ease;
+        }
+      `
+    );
+  }}
 
   /* Disabled styles */
   &:disabled {
@@ -364,6 +541,8 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       colors = {},
       classNames = {},
       loadingIndicator,
+      platform = 'default',
+      isEnabled = false,
       'aria-label': ariaLabel,
       ...props
     },
@@ -393,6 +572,8 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         $disabled={disabled}
         $animate={animate}
         $colors={colors}
+        $platform={platform}
+        $isEnabled={isEnabled}
         className={`icon-button ${className}`}
         style={style}
         disabled={disabled || isLoading}
@@ -414,6 +595,9 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
               className={classNames.loadingIndicator}
             />
           ))}
+        {platform === 'spotify' && isEnabled && variant === 'ghost' && (
+          <EnabledIndicator $size={size} $platform={platform} />
+        )}
       </StyledButton>
     );
   }

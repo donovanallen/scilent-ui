@@ -2,7 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import * as ProviderIcons from '../providers';
 import { ProviderType } from '../providers/types';
-import { getSupportedProviders } from '../providers';
+import { getProviderIcon, getProviderInfo, getSupportedProviders } from '../providers';
 
 const meta: Meta = {
   title: 'Icons/Providers',
@@ -53,7 +53,8 @@ export const AllProviderIcons: Story = {
               // }
             }}
           >
-            <ProviderIcons.ProviderIcon provider={provider} size={40} />
+            {getProviderIcon(provider as ProviderType)({ size: 40 })}
+
             <div
               style={{
                 fontSize: '0.875rem',
@@ -61,7 +62,7 @@ export const AllProviderIcons: Story = {
                 fontWeight: 500,
               }}
             >
-              {provider}
+              {getProviderInfo(provider as ProviderType).name}
             </div>
           </div>
         ))}

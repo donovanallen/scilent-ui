@@ -29,7 +29,7 @@ export const AccessibleIcon = forwardRef<HTMLSpanElement, AccessibleIconProps>(
     return (
       <span
         ref={forwardedRef}
-        role={isPresentation ? 'presentation' : undefined}
+        role={isPresentation ? 'presentation' : 'img'}
         aria-hidden={isPresentation ? 'true' : undefined}
         aria-label={label}
         aria-labelledby={labelledBy}

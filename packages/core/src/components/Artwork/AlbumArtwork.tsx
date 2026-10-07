@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import * as Dialog from '@radix-ui/react-dialog';
 import { BiAlbum } from 'react-icons/bi';
@@ -114,6 +114,11 @@ export interface AlbumArtworkProps {
    * Additional props to pass to the image component
    */
   imageProps?: Record<string, any>;
+
+  /**
+   * Fallback image URL to use if the primary image fails to load
+   */
+  fallbackImage?: string;
 }
 
 // Size styles mapping
@@ -247,12 +252,63 @@ const ArtworkImage = styled.img<{
     `}
 `;
 
+const PlaceholderContainer = styled.div<{
+  $platform: AlbumArtworkPlatform;
+}>`
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-artwork-placeholder-bg, rgba(0, 0, 0, 0.05));
+
+  /* Platform-specific styling for placeholder */
+  ${props => {
+    switch (props.$platform) {
+      case 'spotify':
+        return css`
+          background-color: #282828;
+        `;
+      case 'apple':
+        return css`
+          background-color: #f5f5f7;
+        `;
+      case 'tidal':
+        return css`
+          background-color: #111;
+        `;
+      default:
+        return null;
+    }
+  }}
+`;
+
 const PlaceholderIcon = styled(BiAlbum)<{
   $platform: AlbumArtworkPlatform;
 }>`
   height: 50%;
   width: 50%;
   color: var(--color-artwork-placeholder, rgba(0, 0, 0, 0.3));
+
+  /* Platform-specific styling for placeholder icon */
+  ${props => {
+    switch (props.$platform) {
+      case 'spotify':
+        return css`
+          color: rgba(255, 255, 255, 0.3);
+        `;
+      case 'apple':
+        return css`
+          color: rgba(0, 0, 0, 0.2);
+        `;
+      case 'tidal':
+        return css`
+          color: rgba(255, 255, 255, 0.2);
+        `;
+      default:
+        return null;
+    }
+  }}
 `;
 
 const StyledOverlay = styled(Dialog.Overlay)`
@@ -357,10 +413,25 @@ export const AlbumArtwork = React.forwardRef<HTMLDivElement, AlbumArtworkProps>(
       onClick,
       ImageComponent,
       imageProps = {},
+      fallbackImage,
       ...props
     },
     ref
   ) => {
+    // State to track if the image has failed to load
+    const [imageError, setImageError] = useState(false);
+    // State to track if the fallback image has also failed
+    const [fallbackError, setFallbackError] = useState(false);
+
+    // Handle image error
+    const handleImageError = () => {
+      if (fallbackImage && !imageError) {
+        setImageError(true);
+      } else {
+        setFallbackError(true);
+      }
+    };
+
     // Handle click event
     const handleClick = () => {
       if (onClick) {
@@ -371,6 +442,12 @@ export const AlbumArtwork = React.forwardRef<HTMLDivElement, AlbumArtworkProps>(
     // Determine which image component to use
     const ImageEl = ImageComponent || ArtworkImage;
 
+    // Determine if we should show the placeholder
+    const showPlaceholder = !image || (imageError && (!fallbackImage || fallbackError));
+
+    // Determine the current image source
+    const currentImageSrc = imageError && fallbackImage ? fallbackImage : image;
+
     return (
       <Dialog.Root>
         <ArtworkWrapper
@@ -378,34 +455,35 @@ export const AlbumArtwork = React.forwardRef<HTMLDivElement, AlbumArtworkProps>(
           $size={size}
           $platform={platform}
           $shadow={shadow}
-          $expandable={expandable}
+          $expandable={expandable && !showPlaceholder}
           $borderRadius={borderRadius}
           className={className}
           style={style}
           onClick={handleClick}
-          role={expandable && image ? 'button' : undefined}
-          tabIndex={expandable && image ? 0 : undefined}
-          aria-label={expandable && image ? `View ${name} album artwork` : undefined}
+          role={expandable && !showPlaceholder ? 'button' : undefined}
+          tabIndex={expandable && !showPlaceholder ? 0 : undefined}
+          aria-label={expandable && !showPlaceholder ? `View ${name} album artwork` : undefined}
           onKeyDown={e => {
-            if (expandable && image && (e.key === 'Enter' || e.key === ' ')) {
+            if (expandable && !showPlaceholder && (e.key === 'Enter' || e.key === ' ')) {
               e.preventDefault();
               handleClick();
             }
           }}
           {...props}
         >
-          {image ? (
+          {!showPlaceholder ? (
             <Dialog.Trigger asChild disabled={!expandable}>
               {ImageComponent ? (
                 <ImageEl
-                  src={image}
+                  src={currentImageSrc}
                   alt={`${name} album artwork`}
                   className={classNames?.image}
+                  onError={handleImageError}
                   {...imageProps}
                 />
               ) : (
                 <ImageEl
-                  src={image}
+                  src={currentImageSrc}
                   alt={`${name} album artwork`}
                   $zoom={zoom}
                   $platform={platform}
@@ -413,22 +491,19 @@ export const AlbumArtwork = React.forwardRef<HTMLDivElement, AlbumArtworkProps>(
                   className={classNames?.image}
                   loading={priority ? 'eager' : 'lazy'}
                   sizes={sizes}
+                  onError={handleImageError}
                 />
               )}
             </Dialog.Trigger>
           ) : (
-            <div className="flex h-full w-full items-center justify-center">
-              <PlaceholderIcon
-                $platform={platform}
-                className={classNames?.placeholder}
-                aria-hidden="true"
-              />
-            </div>
+            <PlaceholderContainer $platform={platform} className={classNames?.placeholder}>
+              <PlaceholderIcon $platform={platform} aria-hidden="true" />
+            </PlaceholderContainer>
           )}
         </ArtworkWrapper>
 
         {/* Expandable modal dialog */}
-        {expandable && image && (
+        {expandable && !showPlaceholder && (
           <Dialog.Portal>
             <StyledOverlay className={classNames?.modal} />
             <StyledContent
@@ -436,7 +511,12 @@ export const AlbumArtwork = React.forwardRef<HTMLDivElement, AlbumArtworkProps>(
               aria-label={`${name} album artwork expanded view`}
             >
               <div className="overflow-hidden">
-                <ModalImage src={image} alt={`${name} album artwork`} loading="eager" />
+                <ModalImage
+                  src={currentImageSrc || ''}
+                  alt={`${name} album artwork`}
+                  loading="eager"
+                  onError={handleImageError}
+                />
               </div>
               <CloseButton className={classNames?.closeButton} aria-label="Close expanded view">
                 <IoMdClose size={24} />

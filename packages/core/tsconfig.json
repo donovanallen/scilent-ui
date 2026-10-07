@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "tsBuildInfoFile": "dist/.tsbuildinfo",
+    "types": ["jest", "@testing-library/jest-dom"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
