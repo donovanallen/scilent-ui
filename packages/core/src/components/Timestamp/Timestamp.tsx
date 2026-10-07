@@ -65,6 +65,11 @@ export interface TimestampProps {
    * Additional CSS class name
    */
   className?: string;
+
+  /**
+   * Additional inline styles for the root element
+   */
+  style?: React.CSSProperties;
 }
 
 // Animation for smooth transitions
@@ -163,6 +168,7 @@ export const Timestamp = React.forwardRef<HTMLSpanElement, TimestampProps>(
       autoUpdate = true,
       updateInterval = 60000, // 1 minute
       className = '',
+      style = {},
       ...props
     },
     ref
@@ -262,6 +268,7 @@ export const Timestamp = React.forwardRef<HTMLSpanElement, TimestampProps>(
         $size={size}
         $animate={animate}
         className={`timestamp ${isChanged ? 'timestamp-changed' : ''} ${className}`}
+        style={style}
         {...props}
       >
         {displayValue}

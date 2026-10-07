@@ -1,5 +1,7 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { AlbumArtwork } from './AlbumArtwork';
+import { ALBUM_ARTWORK } from '../../utils/sampleData';
 
 const meta: Meta<typeof AlbumArtwork> = {
   title: 'Components/AlbumArtwork',
@@ -102,9 +104,13 @@ const sampleAlbums = [
  */
 export const Default: Story = {
   args: {
-    image: sampleAlbums[0].image,
-    name: sampleAlbums[0].name,
-    size: 'md',
+    image: ALBUM_ARTWORK.pop,
+    name: 'Album Name',
+    size: 'base',
+    platform: 'default',
+    shadow: false,
+    zoom: false,
+    expandable: false,
   },
 };
 
@@ -240,4 +246,165 @@ export const PlatformComparison: Story = {
       </div>
     </div>
   ),
+};
+
+// Size variants
+export const Sizes: Story = {
+  render: args => (
+    <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>xs</p>
+        <AlbumArtwork {...args} size="xs" />
+      </div>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>sm</p>
+        <AlbumArtwork {...args} size="sm" />
+      </div>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>base</p>
+        <AlbumArtwork {...args} size="base" />
+      </div>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>md</p>
+        <AlbumArtwork {...args} size="md" />
+      </div>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>lg</p>
+        <AlbumArtwork {...args} size="lg" />
+      </div>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>custom (100px)</p>
+        <AlbumArtwork {...args} size={100} />
+      </div>
+    </div>
+  ),
+  args: {
+    image: ALBUM_ARTWORK.rock,
+    name: 'Album Name',
+  },
+};
+
+// Platform variants
+export const Platforms: Story = {
+  render: args => (
+    <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>Default</p>
+        <AlbumArtwork {...args} platform="default" />
+      </div>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>Spotify</p>
+        <AlbumArtwork {...args} platform="spotify" />
+      </div>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>Apple Music</p>
+        <AlbumArtwork {...args} platform="apple" />
+      </div>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>Tidal</p>
+        <AlbumArtwork {...args} platform="tidal" />
+      </div>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>Custom</p>
+        <AlbumArtwork {...args} platform="custom" borderRadius="16px" />
+      </div>
+    </div>
+  ),
+  args: {
+    image: ALBUM_ARTWORK.electronic,
+    name: 'Album Name',
+    size: 'base',
+  },
+};
+
+// Interactive features
+export const InteractiveFeatures: Story = {
+  render: args => (
+    <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>With Shadow</p>
+        <AlbumArtwork {...args} shadow={true} />
+      </div>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>With Zoom</p>
+        <AlbumArtwork {...args} zoom={true} />
+      </div>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>Expandable</p>
+        <AlbumArtwork {...args} expandable={true} />
+      </div>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>With Click Handler</p>
+        <AlbumArtwork {...args} onClick={() => alert('Artwork clicked!')} />
+      </div>
+    </div>
+  ),
+  args: {
+    image: ALBUM_ARTWORK.jazz,
+    name: 'Album Name',
+    size: 'base',
+  },
+};
+
+// Error handling
+export const ErrorHandling: Story = {
+  render: args => (
+    <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>Valid Image</p>
+        <AlbumArtwork {...args} image={ALBUM_ARTWORK.pop} />
+      </div>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>Missing Image (null)</p>
+        <AlbumArtwork {...args} image={null} />
+      </div>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>Broken Image</p>
+        <AlbumArtwork {...args} image={ALBUM_ARTWORK.broken} />
+      </div>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>With Fallback</p>
+        <AlbumArtwork
+          {...args}
+          image={ALBUM_ARTWORK.broken}
+          fallbackImage={ALBUM_ARTWORK.placeholder1}
+        />
+      </div>
+    </div>
+  ),
+  args: {
+    name: 'Album Name',
+    size: 'base',
+  },
+};
+
+// Platform-specific placeholders
+export const PlatformPlaceholders: Story = {
+  render: args => (
+    <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>Default</p>
+        <AlbumArtwork {...args} platform="default" image={null} />
+      </div>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>Spotify</p>
+        <AlbumArtwork {...args} platform="spotify" image={null} />
+      </div>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>Apple Music</p>
+        <AlbumArtwork {...args} platform="apple" image={null} />
+      </div>
+      <div>
+        <p style={{ textAlign: 'center', marginBottom: '8px' }}>Tidal</p>
+        <AlbumArtwork {...args} platform="tidal" image={null} />
+      </div>
+    </div>
+  ),
+  args: {
+    name: 'Album Name',
+    size: 'base',
+  },
+  parameters: {
+    backgrounds: { default: 'light' },
+  },
 };

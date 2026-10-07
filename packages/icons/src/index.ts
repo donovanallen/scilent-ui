@@ -5,8 +5,8 @@ export * from './icons/ProviderIcon';
 // export * from './icons/types';
 
 // Export existing icons
-export * from './icons/Play';
-export * from './icons/Pause';
+// export * from './icons/Play';
+// export * from './icons/Pause';
 // export * from './icons/Stop';
 // export * from './icons/Next';
 // export * from './icons/Previous';

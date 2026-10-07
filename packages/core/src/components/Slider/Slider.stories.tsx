@@ -230,6 +230,146 @@ export const MinimalSlider: Story = {
   },
 };
 
+// Platform comparison story
+export const PlatformComparison: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', width: '100%' }}>
+      {/* Spotify Section */}
+      <div
+        style={{
+          padding: '24px',
+          background: 'linear-gradient(to bottom, #1DB954, #191414)',
+          borderRadius: '8px',
+        }}
+      >
+        <h2 style={{ color: 'white', margin: '0 0 20px' }}>Spotify Slider</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div>
+            <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '12px' }}>Progress Slider</p>
+            <Slider
+              value={[30]}
+              platform="spotify"
+              variant="minimal"
+              thumbVisibility="hover"
+              bufferValue={75}
+              showBuffer={true}
+            />
+          </div>
+          <div>
+            <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '12px' }}>Volume Slider</p>
+            <Slider
+              value={[70]}
+              platform="spotify"
+              variant="minimal"
+              thumbVisibility="hover"
+              size="sm"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Apple Music Section */}
+      <div
+        style={{
+          padding: '24px',
+          background: 'linear-gradient(to right, #fbfbfd, #f5f5f7)',
+          borderRadius: '12px',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)',
+        }}
+      >
+        <h2 style={{ color: '#fa586a', margin: '0 0 20px' }}>Apple Music Slider</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div>
+            <p style={{ color: 'rgba(0,0,0,0.6)', marginBottom: '12px' }}>Progress Slider</p>
+            <Slider
+              value={[45]}
+              platform="apple"
+              variant="minimal"
+              thumbVisibility="hover"
+              bufferValue={80}
+              showBuffer={true}
+            />
+          </div>
+          <div>
+            <p style={{ color: 'rgba(0,0,0,0.6)', marginBottom: '12px' }}>Volume Slider</p>
+            <Slider
+              value={[60]}
+              platform="apple"
+              variant="minimal"
+              thumbVisibility="hover"
+              size="sm"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Tidal Section */}
+      <div
+        style={{
+          padding: '24px',
+          background: '#000',
+          borderRadius: '0',
+        }}
+      >
+        <h2
+          style={{
+            color: 'white',
+            margin: '0 0 20px',
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+          }}
+        >
+          Tidal Slider
+        </h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div>
+            <p
+              style={{
+                color: 'rgba(255,255,255,0.7)',
+                marginBottom: '12px',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px',
+              }}
+            >
+              Progress Slider
+            </p>
+            <Slider
+              value={[55]}
+              platform="tidal"
+              variant="minimal"
+              thumbVisibility="always"
+              bufferValue={90}
+              showBuffer={true}
+            />
+          </div>
+          <div>
+            <p
+              style={{
+                color: 'rgba(255,255,255,0.7)',
+                marginBottom: '12px',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px',
+              }}
+            >
+              Volume Slider
+            </p>
+            <Slider
+              value={[80]}
+              platform="tidal"
+              variant="minimal"
+              thumbVisibility="always"
+              size="sm"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  ),
+  parameters: {
+    layout: 'padded',
+  },
+};
+
 // Interactive music player example
 // const MusicPlayerContainer = styled.div`
 //   width: 400px;

@@ -5,6 +5,11 @@ import * as RadixSlider from '@radix-ui/react-slider';
 import styled, { css, keyframes } from 'styled-components';
 
 /**
+ * Platform variants for styling
+ */
+export type SliderPlatform = 'default' | 'spotify' | 'apple' | 'tidal' | 'custom';
+
+/**
  * Slider size variants
  */
 export type SliderSize = 'sm' | 'md' | 'lg';
@@ -205,6 +210,12 @@ export interface SliderProps {
   customThumb?: React.ReactNode;
 
   /**
+   * Platform-specific styling
+   * @default 'default'
+   */
+  platform?: SliderPlatform;
+
+  /**
    * Additional props to pass to the Radix Slider
    */
   [key: string]: any;
@@ -255,6 +266,7 @@ const StyledSliderRoot = styled(RadixSlider.Root)<{
   $disabled: boolean;
   $colors: SliderProps['colors'];
   $thumbVisibility: ThumbVisibility;
+  $platform?: SliderPlatform;
 }>`
   position: relative;
   display: flex;
@@ -275,6 +287,54 @@ const StyledSliderRoot = styled(RadixSlider.Root)<{
           height: 100%;
           min-height: 100px;
         `}
+
+  /* Platform-specific styles */
+  ${props => {
+    if (props.$platform === 'spotify') {
+      return css`
+        &:hover {
+          [data-slider-track] {
+            background-color: rgba(255, 255, 255, 0.2);
+          }
+
+          [data-slider-range] {
+            background-color: #1db954;
+          }
+
+          [data-slider-thumb] {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+      `;
+    }
+
+    if (props.$platform === 'apple') {
+      return css`
+        height: ${props.$size === 'sm' ? '16px' : props.$size === 'md' ? '20px' : '24px'};
+        padding: 0;
+
+        &:hover {
+          [data-slider-track] {
+            background-color: rgba(0, 0, 0, 0.15);
+          }
+
+          [data-slider-thumb] {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+      `;
+    }
+
+    if (props.$platform === 'tidal') {
+      return css`
+        height: ${props.$size === 'sm' ? '18px' : props.$size === 'md' ? '22px' : '26px'};
+      `;
+    }
+
+    return null;
+  }}
 
   /* Disabled state */
   ${props =>
@@ -324,6 +384,7 @@ const StyledSliderTrack = styled(RadixSlider.Track)<{
   $variant: SliderVariant;
   $orientation: SliderOrientation;
   $colors: SliderProps['colors'];
+  $platform?: SliderPlatform;
 }>`
   position: relative;
   flex-grow: 1;
@@ -340,6 +401,35 @@ const StyledSliderTrack = styled(RadixSlider.Track)<{
       : css`
           width: ${props.$size === 'sm' ? '4px' : props.$size === 'md' ? '6px' : '8px'};
         `}
+
+  /* Platform-specific styles */
+  ${props => {
+    if (props.$platform === 'spotify') {
+      return css`
+        height: 4px;
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: background-color 0.2s ease;
+      `;
+    }
+
+    if (props.$platform === 'apple') {
+      return css`
+        height: 3px;
+        background-color: rgba(0, 0, 0, 0.1);
+        transition: background-color 0.2s ease;
+        border-radius: 1.5px;
+      `;
+    }
+
+    if (props.$platform === 'tidal') {
+      return css`
+        height: 2px;
+        background-color: rgba(255, 255, 255, 0.2);
+      `;
+    }
+
+    return null;
+  }}
 
   /* Style variants */
   ${props =>
@@ -383,12 +473,39 @@ const StyledSliderRange = styled(RadixSlider.Range)<{
   $orientation: SliderOrientation;
   $animate: boolean;
   $colors: SliderProps['colors'];
+  $platform?: SliderPlatform;
 }>`
   position: absolute;
   border-radius: 9999px;
   height: 100%;
   background-color: ${props =>
     props.$colors?.range || 'var(--color-slider-range, var(--color-primary, #3b82f6))'};
+
+  /* Platform-specific styles */
+  ${props => {
+    if (props.$platform === 'spotify') {
+      return css`
+        background-color: rgba(255, 255, 255, 0.7);
+        transition: background-color 0.2s ease;
+      `;
+    }
+
+    if (props.$platform === 'apple') {
+      return css`
+        background: linear-gradient(90deg, #fb5c74 0%, #fa7e68 100%);
+        height: 100%;
+        transition: background 0.2s ease;
+      `;
+    }
+
+    if (props.$platform === 'tidal') {
+      return css`
+        background-color: #ffffff;
+      `;
+    }
+
+    return null;
+  }}
 
   /* Animation */
   ${props =>
@@ -406,6 +523,7 @@ const StyledSliderRange = styled(RadixSlider.Range)<{
   /* Style variants */
   ${props =>
     props.$variant === 'gradient' &&
+    !props.$platform && // Only apply if no platform is specified
     css`
       background: ${props.$colors?.range ||
       'linear-gradient(90deg, var(--color-slider-gradient-start, #3b82f6), var(--color-slider-gradient-end, #8b5cf6))'};
@@ -426,6 +544,7 @@ const StyledSliderThumb = styled(RadixSlider.Thumb)<{
   $animate: boolean;
   $colors: SliderProps['colors'];
   $active: boolean;
+  $platform?: SliderPlatform;
 }>`
   display: block;
   cursor: pointer;
@@ -434,8 +553,84 @@ const StyledSliderThumb = styled(RadixSlider.Thumb)<{
       ? 'transform 100ms ease, box-shadow 100ms ease, opacity 150ms ease'
       : 'opacity 150ms ease'};
 
-  /* Default thumb styles */
+  /* Platform-specific styles */
+  ${props => {
+    if (props.$platform === 'spotify') {
+      return css`
+        width: 12px;
+        height: 12px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        border: none;
+        opacity: 0;
+        transition: all 0.2s ease;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+
+        &:active {
+          transform: scale(0.95);
+        }
+
+        &:focus-visible {
+          opacity: 1;
+          transform: scale(1);
+          box-shadow: 0 0 0 2px rgba(29, 185, 84, 0.5);
+        }
+      `;
+    }
+
+    if (props.$platform === 'apple') {
+      return css`
+        width: 14px;
+        height: 14px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        border: none;
+        opacity: 0;
+        transition: all 0.2s ease;
+
+        &:hover {
+          transform: scale(1.1);
+          box-shadow: 0 2px 8px rgba(251, 92, 116, 0.4);
+        }
+
+        &:active {
+          transform: scale(0.95);
+        }
+
+        &:focus-visible {
+          opacity: 1;
+          transform: scale(1);
+          box-shadow: 0 0 0 3px rgba(251, 92, 116, 0.3);
+        }
+      `;
+    }
+
+    if (props.$platform === 'tidal') {
+      return css`
+        width: 10px;
+        height: 10px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        box-shadow: none;
+        border: none;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      `;
+    }
+
+    return null;
+  }}
+
+  /* Default thumb styles - only applied if no platform is specified */
   ${props =>
+    !props.$platform &&
     props.$thumbVariant === 'default' &&
     css`
       width: ${props.$size === 'sm' ? '12px' : props.$size === 'md' ? '16px' : '20px'};
@@ -456,8 +651,9 @@ const StyledSliderThumb = styled(RadixSlider.Thumb)<{
       `}
     `}
 
-  /* Dot thumb variant */
+  /* Other thumb variants - only applied if no platform is specified */
   ${props =>
+    !props.$platform &&
     props.$thumbVariant === 'dot' &&
     css`
       width: ${props.$size === 'sm' ? '8px' : props.$size === 'md' ? '10px' : '12px'};
@@ -468,8 +664,8 @@ const StyledSliderThumb = styled(RadixSlider.Thumb)<{
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     `}
   
-  /* Line thumb variant */
   ${props =>
+    !props.$platform &&
     props.$thumbVariant === 'line' &&
     css`
       width: ${props.$size === 'sm' ? '2px' : props.$size === 'md' ? '3px' : '4px'};
@@ -480,8 +676,8 @@ const StyledSliderThumb = styled(RadixSlider.Thumb)<{
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     `}
   
-  /* Square thumb variant */
   ${props =>
+    !props.$platform &&
     props.$thumbVariant === 'square' &&
     css`
       width: ${props.$size === 'sm' ? '10px' : props.$size === 'md' ? '12px' : '16px'};
@@ -496,6 +692,7 @@ const StyledSliderThumb = styled(RadixSlider.Thumb)<{
   /* Animation */
   ${props =>
     props.$animate &&
+    !props.$platform && // Only apply default animation if no platform is specified
     css`
       &:active {
         transform: scale(1.1);
@@ -676,6 +873,7 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       bufferValue,
       showBuffer = false,
       customThumb,
+      platform,
       ...props
     },
     ref
@@ -841,6 +1039,7 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
         $disabled={disabled}
         $colors={colors}
         $thumbVisibility={thumbVisibility}
+        $platform={platform}
         className={`slider ${className} ${classNames.root || ''}`}
         style={style}
         onPointerDown={() => setIsDragging(true)}
@@ -850,10 +1049,12 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
         {...props}
       >
         <StyledSliderTrack
+          data-slider-track
           $size={size}
           $variant={variant}
           $orientation={orientation}
           $colors={colors}
+          $platform={platform}
           className={`slider-track ${classNames.track || ''}`}
         >
           {showBuffer && bufferValue !== undefined && (
@@ -865,12 +1066,14 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
             />
           )}
           <StyledSliderRange
+            data-slider-range
             ref={rangeRef}
             $size={size}
             $variant={variant}
             $orientation={orientation}
             $animate={animate}
             $colors={colors}
+            $platform={platform}
             className={`slider-range ${classNames.range || ''}`}
           />
         </StyledSliderTrack>
@@ -878,14 +1081,15 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
         {localValue.map((_, i) => (
           <StyledSliderThumb
             key={i}
+            data-slider-thumb
             $size={size}
             $variant={variant}
             $thumbVariant={thumbVariant}
             $animate={animate}
             $colors={colors}
             $active={activeThumbIndex === i}
+            $platform={platform}
             className={`slider-thumb ${classNames.thumb || ''}`}
-            data-thumb="true"
             onFocus={() => setActiveThumbIndex(i)}
             onBlur={() => setActiveThumbIndex(null)}
             onPointerDown={() => setActiveThumbIndex(i)}
