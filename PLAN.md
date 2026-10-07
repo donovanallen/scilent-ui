@@ -15,6 +15,18 @@ Created Oct 2026 · Paced alongside batch 3 + Scilent roadmap
 
 - audio-ui.xyz (audio/ui): shadcn-based, copy-paste registry, live interactive demos,
   theme customizer, 193 stars — validates niche + playbook.
+- AudioUI by Cutoff (cutoff.dev, github.com/cutoff/audio-ui): closest direct peer —
+  React audio/MIDI library (Knob, Slider, CycleButton, Keys, film-strip/bitmap controls,
+  low-level primitives), framework-agnostic core + React wrapper, dev-preview. \*\*GPL-3.0
+  - commercial dual license: patterns/docs ideas only, zero code reuse.\*\* Borrow for
+    Phase 2 docs: llms.txt + `.md`-per-page LLM-consumable docs, one-file CDN sandbox demo
+    template, Discord/GitHub-Discussions community setup. Their core/react split, event
+    value model, CSS-var theming, and two-tier "primitives + opinionated components" API
+    are prior art for our hybrid distribution and Slider/transport roadmap. Details in
+    INSPO.md (2026-10-06 entry).
+- Licensing positioning: they monetize via GPL/commercial dual licensing; scilent-ui
+  stays MIT with paid pro blocks/templates + theme packs as the paid tier — a more
+  OSS-friendly wedge. (Note for Phase 4 messaging; Donovan's call to publicize.)
 - Niche: music/audio UI components (players, artwork, metadata, sliders, transport).
 - Monetization (later): free core; paid pro blocks/templates + premium theme packs; sponsorships.
 
