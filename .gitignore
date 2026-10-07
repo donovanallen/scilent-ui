@@ -71,3 +71,4 @@ storybook-static
 .changeset/*.md
 !.changeset/config.json 
 *storybook.log
+apps/docs/public/storybook/

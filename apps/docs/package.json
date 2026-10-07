@@ -1,10 +1,24 @@
 {
   "name": "@scilent/docs",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
-  "description": "scilent-ui docs site stub — serves the shadcn-style registry at /r/<name> and will host live demos (Phase 2).",
+  "description": "scilent-ui documentation site (Vite + React) — serves the shadcn-style registry at /r/*.",
+  "type": "module",
   "scripts": {
-    "dev": "npx serve public -l 4321",
-    "build": "mkdir -p dist && cp -R public/* dist/"
+    "generate": "node scripts/generate-docs-data.mjs",
+    "dev": "vite --port 5173",
+    "build": "npm run generate && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11"
   }
 }

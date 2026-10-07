@@ -1,0 +1,906 @@
+[
+  {
+    "slug": "artist-label",
+    "name": "ArtistLabel",
+    "description": "ArtistLabel component for displaying artist names with various formatting options",
+    "stories": ["default"],
+    "props": [
+      {
+        "name": "artists",
+        "type": "string | string[]",
+        "optional": false,
+        "description": "Artist name or array of artist names"
+      },
+      {
+        "name": "delimiter",
+        "type": "string",
+        "optional": true,
+        "description": "Delimiter to use when joining multiple artist names",
+        "default": ", "
+      },
+      {
+        "name": "truncate",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to truncate the text when it overflows",
+        "default": "true"
+      },
+      {
+        "name": "truncationType",
+        "type": "TruncationType",
+        "optional": true,
+        "description": "Type of truncation to apply",
+        "default": "end"
+      },
+      {
+        "name": "maxLength",
+        "type": "number",
+        "optional": true,
+        "description": "Maximum number of characters before truncation",
+        "default": "undefined (no truncation unless specified)"
+      },
+      {
+        "name": "as",
+        "type": "'span' | 'div' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'",
+        "optional": true,
+        "description": "HTML element to render as",
+        "default": "span"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "optional": true,
+        "description": "Additional CSS class name"
+      },
+      {
+        "name": "style",
+        "type": "React.CSSProperties",
+        "optional": true,
+        "description": "Additional inline styles Use this for all styling needs (fontWeight, fontStyle, color, fontSize, etc.)"
+      },
+      {
+        "name": "onClick",
+        "type": "(event: React.MouseEvent<HTMLElement>) => void",
+        "optional": true,
+        "description": "Click handler"
+      }
+    ],
+    "a11yNotes": ["has no accessibility violations"]
+  },
+  {
+    "slug": "album-artwork",
+    "name": "AlbumArtwork",
+    "description": "AlbumArtwork component Displays album artwork with various size options, platform-specific styling, and expandable functionality. Follows accessibility best practices and preserves the integrity of album artwork as specified in the design guidelines.",
+    "stories": ["default"],
+    "props": [
+      {
+        "name": "image",
+        "type": "string | null",
+        "optional": true,
+        "description": "The URL of the album artwork image"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "optional": false,
+        "description": "The name of the album (used for alt text)"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "optional": true,
+        "description": "Additional CSS class name for the root element"
+      },
+      {
+        "name": "classNames",
+        "type": "{ wrapper?: string; image?: string; placeholder?: string; modal?: string; modalContent?: string; closeButton?: string; }",
+        "optional": true,
+        "description": "Object of class names for specific elements"
+      },
+      {
+        "name": "priority",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to prioritize loading the image",
+        "default": "false"
+      },
+      {
+        "name": "sizes",
+        "type": "string",
+        "optional": true,
+        "description": "Sizes attribute for the image (responsive)",
+        "default": "(min-width: 1280px) 20vw, (min-width: 768px) 25vw, 50vw"
+      },
+      {
+        "name": "size",
+        "type": "AlbumArtworkSize",
+        "optional": true,
+        "description": "Size variant of the artwork",
+        "default": "auto"
+      },
+      {
+        "name": "zoom",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to apply a zoom effect on hover",
+        "default": "false"
+      },
+      {
+        "name": "expandable",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether the artwork can be expanded to full size",
+        "default": "false"
+      },
+      {
+        "name": "platform",
+        "type": "AlbumArtworkPlatform",
+        "optional": true,
+        "description": "Platform-specific styling",
+        "default": "default"
+      },
+      {
+        "name": "shadow",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to apply a shadow effect",
+        "default": "false"
+      },
+      {
+        "name": "borderRadius",
+        "type": "string",
+        "optional": true,
+        "description": "Border radius override"
+      },
+      {
+        "name": "style",
+        "type": "React.CSSProperties",
+        "optional": true,
+        "description": "Custom styles for the wrapper"
+      },
+      {
+        "name": "onClick",
+        "type": "() => void",
+        "optional": true,
+        "description": "Callback when the artwork is clicked"
+      },
+      {
+        "name": "ImageComponent",
+        "type": "React.ElementType",
+        "optional": true,
+        "description": "Custom image component to use instead of the default img element Useful for frameworks with their own image components like Next.js"
+      },
+      {
+        "name": "imageProps",
+        "type": "Record<string, any>",
+        "optional": true,
+        "description": "Additional props to pass to the image component"
+      },
+      {
+        "name": "fallbackImage",
+        "type": "string",
+        "optional": true,
+        "description": "Fallback image URL to use if the primary image fails to load"
+      }
+    ],
+    "a11yNotes": [
+      "has no axe violations for the default image variant",
+      "has no axe violations for the placeholder variant",
+      "has no axe violations for the expandable variant",
+      "has no axe violations per platform variant"
+    ]
+  },
+  {
+    "slug": "card",
+    "name": "Card",
+    "description": "Card component for displaying music tracks or albums",
+    "stories": ["default"],
+    "props": [
+      {
+        "name": "item",
+        "type": "MusicTrack",
+        "optional": false,
+        "description": "The track or album to display"
+      },
+      {
+        "name": "size",
+        "type": "CardSize",
+        "optional": true,
+        "description": "The size of the card",
+        "default": "md"
+      },
+      {
+        "name": "layout",
+        "type": "CardLayout",
+        "optional": true,
+        "description": "The layout of the card",
+        "default": "vertical"
+      },
+      {
+        "name": "theme",
+        "type": "CardTheme",
+        "optional": true,
+        "description": "The theme of the card",
+        "default": "light"
+      },
+      {
+        "name": "hoverEffect",
+        "type": "CardHoverEffect",
+        "optional": true,
+        "description": "The hover effect to apply",
+        "default": "lift"
+      },
+      {
+        "name": "showAlbum",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to show the album name",
+        "default": "true"
+      },
+      {
+        "name": "shadow",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to apply a shadow effect",
+        "default": "true"
+      },
+      {
+        "name": "expandableArtwork",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to make the artwork expandable",
+        "default": "false"
+      },
+      {
+        "name": "zoomArtwork",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to apply a zoom effect on artwork hover",
+        "default": "false"
+      },
+      {
+        "name": "platform",
+        "type": "AlbumArtworkPlatform",
+        "optional": true,
+        "description": "Platform-specific styling",
+        "default": "default"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "optional": true,
+        "description": "Additional CSS class name"
+      },
+      {
+        "name": "style",
+        "type": "React.CSSProperties",
+        "optional": true,
+        "description": "Additional inline styles"
+      },
+      {
+        "name": "onClick",
+        "type": "() => void",
+        "optional": true,
+        "description": "Click handler for the card"
+      },
+      {
+        "name": "interactive",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether the card is interactive (clickable)",
+        "default": "true"
+      },
+      {
+        "name": "showPlayButton",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to show a play button overlay on hover",
+        "default": "false"
+      },
+      {
+        "name": "onPlay",
+        "type": "() => void",
+        "optional": true,
+        "description": "Callback when the play button is clicked"
+      }
+    ],
+    "a11yNotes": ["has no accessibility violations"]
+  },
+  {
+    "slug": "icon-button",
+    "name": "IconButton",
+    "description": "IconButton component A button that displays an icon with various states and variants.",
+    "stories": ["default"],
+    "props": [
+      {
+        "name": "icon",
+        "type": "IconType | React.ComponentType<IconProps | any>",
+        "optional": false,
+        "description": "The icon to display"
+      },
+      {
+        "name": "variant",
+        "type": "IconButtonVariant",
+        "optional": true,
+        "description": "The variant of the button",
+        "default": "primary"
+      },
+      {
+        "name": "size",
+        "type": "IconButtonSize",
+        "optional": true,
+        "description": "The size of the button",
+        "default": "md"
+      },
+      {
+        "name": "isLoading",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether the button is in a loading state",
+        "default": "false"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether the button is disabled",
+        "default": "false"
+      },
+      {
+        "name": "animate",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to animate the button on interaction",
+        "default": "true"
+      },
+      {
+        "name": "iconColor",
+        "type": "string",
+        "optional": true,
+        "description": "The color of the icon",
+        "default": "currentColor"
+      },
+      {
+        "name": "iconSize",
+        "type": "number",
+        "optional": true,
+        "description": "Custom size for the icon (overrides the default size based on button size)"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "optional": true,
+        "description": "Additional CSS class name"
+      },
+      {
+        "name": "style",
+        "type": "React.CSSProperties",
+        "optional": true,
+        "description": "Additional inline styles"
+      },
+      {
+        "name": "colors",
+        "type": "{ background?: string; hover?: string; active?: string; text?: string; border?: string; }",
+        "optional": true,
+        "description": "Custom colors for different states"
+      },
+      {
+        "name": "classNames",
+        "type": "{ icon?: string; loadingIndicator?: string; }",
+        "optional": true,
+        "description": "Custom class names for specific elements"
+      },
+      {
+        "name": "loadingIndicator",
+        "type": "React.ReactNode",
+        "optional": true,
+        "description": "Custom loading indicator component"
+      },
+      {
+        "name": "platform",
+        "type": "IconButtonPlatform",
+        "optional": true,
+        "description": "The platform styling to apply",
+        "default": "default"
+      },
+      {
+        "name": "isEnabled",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether the button is in an enabled/active state (e.g. shuffle enabled, repeat enabled) Only used for certain platform variants",
+        "default": "false"
+      }
+    ],
+    "a11yNotes": [
+      "has no axe violations for default, loading, and disabled variants",
+      "has no axe violations per platform variant"
+    ]
+  },
+  {
+    "slug": "metadata-label",
+    "name": "MetadataLabel",
+    "description": "MetadataLabel component for displaying text with truncation options",
+    "stories": ["default"],
+    "props": [
+      {
+        "name": "text",
+        "type": "string",
+        "optional": false,
+        "description": "Text content to display"
+      },
+      {
+        "name": "truncate",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to truncate the text when it exceeds maxLength",
+        "default": "true"
+      },
+      {
+        "name": "truncationType",
+        "type": "'none' | 'end' | 'middle'",
+        "optional": true,
+        "description": "Type of truncation to apply",
+        "default": "end"
+      },
+      {
+        "name": "maxLength",
+        "type": "number",
+        "optional": true,
+        "description": "Maximum number of characters before truncation",
+        "default": "undefined (no truncation unless specified)"
+      },
+      {
+        "name": "as",
+        "type": "'span' | 'div' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'",
+        "optional": true,
+        "description": "HTML element to render as",
+        "default": "span"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "optional": true,
+        "description": "Additional CSS class name"
+      },
+      {
+        "name": "style",
+        "type": "React.CSSProperties",
+        "optional": true,
+        "description": "Additional inline styles Use this for all styling needs (fontWeight, fontStyle, color, fontSize, etc.)"
+      },
+      {
+        "name": "onClick",
+        "type": "(event: React.MouseEvent<HTMLElement>) => void",
+        "optional": true,
+        "description": "Click handler"
+      }
+    ],
+    "a11yNotes": ["has no accessibility violations"]
+  },
+  {
+    "slug": "slider",
+    "name": "Slider",
+    "description": "Slider component A customizable slider component built on top of Radix UI Slider primitive. Optimized for performance, responsiveness, and extensibility.",
+    "stories": ["default"],
+    "props": [
+      {
+        "name": "value",
+        "type": "number[]",
+        "optional": false,
+        "description": "Current value of the slider"
+      },
+      {
+        "name": "onValueChange",
+        "type": "(value: number[]) => void",
+        "optional": true,
+        "description": "Callback when the value changes"
+      },
+      {
+        "name": "onValueCommit",
+        "type": "(value: number[]) => void",
+        "optional": true,
+        "description": "Callback when the value change is committed (on drag end)"
+      },
+      {
+        "name": "min",
+        "type": "number",
+        "optional": true,
+        "description": "Minimum value",
+        "default": "0"
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "optional": true,
+        "description": "Maximum value",
+        "default": "100"
+      },
+      {
+        "name": "step",
+        "type": "number",
+        "optional": true,
+        "description": "Step value",
+        "default": "1"
+      },
+      {
+        "name": "size",
+        "type": "SliderSize",
+        "optional": true,
+        "description": "Size variant",
+        "default": "md"
+      },
+      {
+        "name": "variant",
+        "type": "SliderVariant",
+        "optional": true,
+        "description": "Style variant",
+        "default": "default"
+      },
+      {
+        "name": "thumbVariant",
+        "type": "ThumbVariant",
+        "optional": true,
+        "description": "Thumb variant",
+        "default": "default"
+      },
+      {
+        "name": "thumbVisibility",
+        "type": "ThumbVisibility",
+        "optional": true,
+        "description": "Thumb visibility",
+        "default": "always"
+      },
+      {
+        "name": "orientation",
+        "type": "SliderOrientation",
+        "optional": true,
+        "description": "Orientation of the slider",
+        "default": "horizontal"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether the slider is disabled",
+        "default": "false"
+      },
+      {
+        "name": "showTooltip",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to show the thumb tooltip",
+        "default": "false"
+      },
+      {
+        "name": "formatTooltip",
+        "type": "(value: number) => string",
+        "optional": true,
+        "description": "Format function for the tooltip value"
+      },
+      {
+        "name": "animate",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to animate value changes",
+        "default": "true"
+      },
+      {
+        "name": "optimizePerformance",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to optimize for performance",
+        "default": "false"
+      },
+      {
+        "name": "showTicks",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to show tick marks",
+        "default": "false"
+      },
+      {
+        "name": "tickCount",
+        "type": "number",
+        "optional": true,
+        "description": "Number of tick marks to show",
+        "default": "5"
+      },
+      {
+        "name": "showLabels",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to show labels",
+        "default": "false"
+      },
+      {
+        "name": "formatLabel",
+        "type": "(value: number) => string",
+        "optional": true,
+        "description": "Format function for the labels"
+      },
+      {
+        "name": "colors",
+        "type": "{ track?: string; range?: string; thumb?: string; tickMarks?: string; disabled?: string; }",
+        "optional": true,
+        "description": "Custom colors for the slider"
+      },
+      {
+        "name": "classNames",
+        "type": "{ root?: string; track?: string; range?: string; thumb?: string; tooltip?: string; tickMarks?: string; labels?: string; }",
+        "optional": true,
+        "description": "Custom class names for specific elements"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "optional": true,
+        "description": "Additional CSS class name for the root element"
+      },
+      {
+        "name": "style",
+        "type": "React.CSSProperties",
+        "optional": true,
+        "description": "Additional inline styles for the root element"
+      },
+      {
+        "name": "inverted",
+        "type": "boolean",
+        "optional": true,
+        "description": "Inverted slider (right to left or bottom to top)",
+        "default": "false"
+      },
+      {
+        "name": "bufferValue",
+        "type": "number",
+        "optional": true,
+        "description": "Buffer value for buffered content (e.g., video/audio loading)"
+      },
+      {
+        "name": "showBuffer",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to show the buffer",
+        "default": "false"
+      },
+      {
+        "name": "customThumb",
+        "type": "React.ReactNode",
+        "optional": true,
+        "description": "Whether to use a custom thumb component"
+      },
+      {
+        "name": "platform",
+        "type": "SliderPlatform",
+        "optional": true,
+        "description": "Platform-specific styling",
+        "default": "default"
+      }
+    ],
+    "a11yNotes": [
+      "has no axe violations for default and disabled variants",
+      "has no axe violations per platform variant"
+    ]
+  },
+  {
+    "slug": "timestamp",
+    "name": "Timestamp",
+    "description": "Timestamp component for displaying various time-related information Supports durations, relative times, and formatted dates/times",
+    "stories": ["default"],
+    "props": [
+      {
+        "name": "value",
+        "type": "number | Date | string",
+        "optional": false,
+        "description": "The value to display, can be: - number (seconds for duration, milliseconds for date) - Date object - ISO string"
+      },
+      {
+        "name": "variant",
+        "type": "TimestampVariant",
+        "optional": true,
+        "description": "The variant of the timestamp",
+        "default": "default"
+      },
+      {
+        "name": "size",
+        "type": "TimestampSize",
+        "optional": true,
+        "description": "The size of the timestamp",
+        "default": "md"
+      },
+      {
+        "name": "format",
+        "type": "TimestampFormat",
+        "optional": true,
+        "description": "The format to display the timestamp in",
+        "default": "duration' for numbers, 'relative' for dates"
+      },
+      {
+        "name": "customFormat",
+        "type": "Intl.DateTimeFormatOptions",
+        "optional": true,
+        "description": "Custom format string for date/time (follows Intl.DateTimeFormat options) Only used when format is 'custom'"
+      },
+      {
+        "name": "locale",
+        "type": "string",
+        "optional": true,
+        "description": "Custom locale for formatting",
+        "default": "system locale"
+      },
+      {
+        "name": "animate",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to animate changes",
+        "default": "false"
+      },
+      {
+        "name": "autoUpdate",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to update relative times automatically",
+        "default": "true for relative format"
+      },
+      {
+        "name": "updateInterval",
+        "type": "number",
+        "optional": true,
+        "description": "Update interval in milliseconds for relative times",
+        "default": "60000 (1 minute)"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "optional": true,
+        "description": "Additional CSS class name"
+      },
+      {
+        "name": "style",
+        "type": "React.CSSProperties",
+        "optional": true,
+        "description": "Additional inline styles for the root element"
+      }
+    ],
+    "a11yNotes": [
+      "has no accessibility violations (duration)",
+      "has no accessibility violations (relative date)",
+      "has no accessibility violations (formatted date, custom class/style)"
+    ]
+  },
+  {
+    "slug": "music-player",
+    "name": "MusicPlayer",
+    "description": "A simple playback interface using a combination of Scilent UI components",
+    "stories": [
+      "default",
+      "variantcomparison",
+      "sizeandthemecomparison",
+      "controloptions",
+      "platformcomparison"
+    ],
+    "props": [
+      {
+        "name": "track",
+        "type": "MusicTrack",
+        "optional": false,
+        "description": "The track to play"
+      },
+      {
+        "name": "autoPlay",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to autoplay the track",
+        "default": "false"
+      },
+      {
+        "name": "showTrackInfo",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to show the track info",
+        "default": "true"
+      },
+      {
+        "name": "showVolumeControl",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to show the volume control",
+        "default": "true"
+      },
+      {
+        "name": "showProgress",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to show the progress bar",
+        "default": "true"
+      },
+      {
+        "name": "showControls",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to show the playback controls",
+        "default": "true"
+      },
+      {
+        "name": "showSkipButtons",
+        "type": "boolean",
+        "optional": true,
+        "description": "Whether to show the skip buttons",
+        "default": "true"
+      },
+      {
+        "name": "variant",
+        "type": "MusicPlayerVariant",
+        "optional": true,
+        "description": "The variant of the music player",
+        "default": "default"
+      },
+      {
+        "name": "size",
+        "type": "MusicPlayerSize",
+        "optional": true,
+        "description": "The size of the music player",
+        "default": "md"
+      },
+      {
+        "name": "theme",
+        "type": "MusicPlayerTheme",
+        "optional": true,
+        "description": "The theme of the music player",
+        "default": "light"
+      },
+      {
+        "name": "platform",
+        "type": "AlbumArtworkPlatform",
+        "optional": true,
+        "description": "The platform styling for the album artwork",
+        "default": "default"
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "optional": true,
+        "description": "Additional CSS class name"
+      },
+      {
+        "name": "style",
+        "type": "React.CSSProperties",
+        "optional": true,
+        "description": "Additional inline styles"
+      },
+      {
+        "name": "onEnded",
+        "type": "() => void",
+        "optional": true,
+        "description": "Callback when the track ends"
+      },
+      {
+        "name": "onPlay",
+        "type": "() => void",
+        "optional": true,
+        "description": "Callback when the track starts playing"
+      },
+      {
+        "name": "onPause",
+        "type": "() => void",
+        "optional": true,
+        "description": "Callback when the track is paused"
+      },
+      {
+        "name": "onNext",
+        "type": "() => void",
+        "optional": true,
+        "description": "Callback when the track is skipped forward"
+      },
+      {
+        "name": "onPrevious",
+        "type": "() => void",
+        "optional": true,
+        "description": "Callback when the track is skipped backward"
+      }
+    ],
+    "a11yNotes": [
+      "has no axe violations (default variant)",
+      "has no axe violations (compact variant)"
+    ]
+  }
+]
