@@ -33,9 +33,9 @@ jobs:
           node-version: 23
 
       # npm >= 11.5.1 required for trusted publishing (OIDC);
-      # Node 23 ships npm 10.x, so upgrade explicitly.
+      # Node 23 ships npm 10.x, so install an LTS-compatible npm explicitly.
       - name: Ensure npm supports trusted publishing
-        run: npm install -g npm@latest
+        run: npm install -g npm@11
 
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
