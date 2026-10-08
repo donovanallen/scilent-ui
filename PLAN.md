@@ -44,6 +44,13 @@ Created Oct 2026 · Paced alongside batch 3 + Scilent roadmap
   work, +803/−258); stash "music-player-ui" on dev; ~25 stale branches (SCI-\* tickets,
   hotfixes, album-artwork forks). docs app appears early-stage.
 
+- **Branch topology (post-cutover, Oct 8)**: `main` = trunk and the npm-publish trunk
+  (changesets action publishes on version-PR merge to main). `dev` retained as the
+  integration mirror of main. `landing-page` retired from active use — it served the
+  WIP-landing + Phase 1 push (PR #18 merged it into dev, then main was fast-forwarded
+  to the same content). `phase1-tests` deleted (fully merged via PR #19). New work
+  branches off `main` directly.
+
 ## Phases
 
 - **Phase 0 (setup — now)**: agent created; repo hygiene (WIP stashed/branched, branch
