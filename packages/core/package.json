@@ -66,5 +66,10 @@
     "extends": [
       "plugin:storybook/recommended"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/donovanallen/scilent-ui.git",
+    "directory": "packages/core"
   }
 }

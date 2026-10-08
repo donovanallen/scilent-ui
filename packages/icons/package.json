@@ -46,5 +46,10 @@
     "@phosphor-icons/react": "^2.1.7",
     "@radix-ui/react-icons": "^1.3.0",
     "react-icons": "^5.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/donovanallen/scilent-ui.git",
+    "directory": "packages/icons"
   }
 }
