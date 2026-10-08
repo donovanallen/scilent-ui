@@ -4,7 +4,7 @@ export default {
   extends: ['@commitlint/config-conventional'],
   parserPreset: 'conventional-changelog-conventionalcommits',
   rules: {
-    'body-max-length': [2, 'always', 200],
+    'body-max-length': [2, 'always', 500],
     'body-max-line-length': [2, 'always', 100],
     'subject-case': [1, 'never', ['sentence-case', 'start-case', 'pascal-case', 'upper-case']],
     'type-enum': [
