@@ -67,8 +67,7 @@ logs
 # Storybook
 storybook-static
 
-# Changesets
-.changeset/*.md
-!.changeset/config.json 
+# Changesets (changeset .md files MUST be committed - they drive the version PR)
+# !.changeset/config.json 
 *storybook.log
 apps/docs/public/storybook/
