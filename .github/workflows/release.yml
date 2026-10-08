@@ -53,10 +53,12 @@ jobs:
         uses: changesets/action@v2
         with:
           # This expects you to have a script called release which does a build for your packages
-          publish: pnpm release
-          version: pnpm version-packages
-          commit: 'chore: update versions'
-          title: 'chore: update versions'
+          # (action v2 renamed inputs: publish→publish-script, version→version-script,
+          #  commit→commit-message, title→pr-title)
+          publish-script: pnpm release
+          version-script: pnpm version-packages
+          commit-message: 'chore: update versions'
+          pr-title: 'chore: update versions'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Trusted publishing (action v2): NO NPM_TOKEN/NODE_AUTH_TOKEN — passing
