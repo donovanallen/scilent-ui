@@ -57,6 +57,19 @@ reviewers as an extra gate), come back and add that same name here on both
 packages. Adding an environment is a recommended hardening follow-up, not required
 for the first publish.
 
+## Workflow-side changes made (history)
+
+1. Removed `registry-url` from `setup-node` — it wrote an `._authToken=${NODE_AUTH_TOKEN}`
+   line into `.npmrc`, which made npm skip its OIDC exchange (root cause of the first
+   E404).
+2. Removed `NPM_TOKEN`/`NODE_AUTH_TOKEN` entirely — passing either makes
+   changesets/action write a token `.npmrc` and kills OIDC (the ENEEDAUTH failure).
+3. Upgraded `changesets/action` v1 → v2 — v1 predates trusted-publishing support
+   (v1.7.0+ added it; v2 sub-actions are the recommended form).
+4. Added `npm install -g npm@11` (npm >= 11.5.1 required; `npm@latest` needs
+   node >= 22.22 which our runner's Node 23 doesn't satisfy).
+5. Added `workflow_dispatch` for manual re-runs.
+
 ## How to test (after Donovan's npmjs entries)
 
 The versions are already bumped on main (core 2.1.0, icons 1.1.1) and unpublishable

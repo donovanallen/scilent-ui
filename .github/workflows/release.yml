@@ -50,7 +50,7 @@ jobs:
 
       - name: Create Release PR or Publish to npm
         id: changesets
-        uses: changesets/action@v1
+        uses: changesets/action@v2
         with:
           # This expects you to have a script called release which does a build for your packages
           publish: pnpm release
@@ -59,10 +59,9 @@ jobs:
           title: 'chore: update versions'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Trusted publishing: NO token secrets here. npm mints a short-lived
-          # OIDC token from the workflow's id-token and validates it against the
-          # trusted-publisher config on npmjs.com. The old NODE_AUTH_TOKEN/NPM_TOKEN
-          # path was removed (secret deleted from repo settings by Donovan).
+          # Trusted publishing (action v2): NO NPM_TOKEN/NODE_AUTH_TOKEN — passing
+          # either makes the action write a token .npmrc and npm skips its OIDC
+          # exchange (the E404/ENEEDAUTH failures we hit on action v1).
           NPM_CONFIG_PROVENANCE: true
 
       - name: Create Git Tag
