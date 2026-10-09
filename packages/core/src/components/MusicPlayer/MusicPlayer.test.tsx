@@ -316,6 +316,77 @@ describe('MusicPlayer', () => {
     });
   });
 
+  describe('coverage matrix', () => {
+    // Drives the styled-components interpolation branches: platform chrome
+    // re-evaluates per (platform, theme, variant, size) combination, so each
+    // unique prop set needs at least one render to count as covered.
+    it.each(['spotify', 'apple', 'tidal'] as const)(
+      '%s compact player renders in dark theme at sm and lg sizes',
+      platform => {
+        for (const size of ['sm', 'lg'] as const) {
+          const { container, unmount } = render(
+            <MusicPlayer
+              track={rock}
+              variant="compact"
+              platform={platform}
+              theme="dark"
+              size={size}
+            />
+          );
+          load(container);
+          expect(container.querySelector('.music-player')).toBeInTheDocument();
+          unmount();
+        }
+      }
+    );
+
+    it.each(['spotify', 'apple', 'tidal'] as const)(
+      '%s default player renders in dark theme at lg size',
+      platform => {
+        const { container, unmount } = render(
+          <MusicPlayer track={rock} platform={platform} theme="dark" size="lg" />
+        );
+        load(container);
+        expect(container.querySelector('.music-player')).toBeInTheDocument();
+        unmount();
+      }
+    );
+
+    it.each(['default', 'minimal', 'expanded'] as const)(
+      '%s variant resolves artwork size for every player size',
+      variant => {
+        for (const size of ['sm', 'md', 'lg'] as const) {
+          const { container, unmount } = render(
+            <MusicPlayer track={rock} variant={variant} size={size} />
+          );
+          expect(container.querySelector('.music-player')).toBeInTheDocument();
+          unmount();
+        }
+      }
+    );
+
+    it('compact + spotify: play/pause and mute buttons flip icons and labels', async () => {
+      const user = userEvent.setup();
+      const { container } = render(
+        <MusicPlayer track={rock} variant="compact" platform="spotify" />
+      );
+      load(container);
+      const audio = getAudio(container);
+
+      await user.click(screen.getByRole('button', { name: 'Play' }));
+      emit(audio, 'play');
+      expect(await screen.findByRole('button', { name: 'Pause' })).toBeInTheDocument();
+      await user.click(screen.getByRole('button', { name: 'Pause' }));
+      emit(audio, 'pause');
+      expect(await screen.findByRole('button', { name: 'Play' })).toBeInTheDocument();
+
+      await user.click(screen.getByRole('button', { name: 'Mute' }));
+      expect(await screen.findByRole('button', { name: 'Unmute' })).toBeInTheDocument();
+      await user.click(screen.getByRole('button', { name: 'Unmute' }));
+      expect(await screen.findByRole('button', { name: 'Mute' })).toBeInTheDocument();
+    });
+  });
+
   describe('accessibility', () => {
     it('has no axe violations (default variant)', async () => {
       const { container } = render(<MusicPlayer track={rock} />);

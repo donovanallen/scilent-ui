@@ -3,6 +3,7 @@ import DemoFrame from '../components/DemoFrame';
 import PropsTable from '../components/PropsTable';
 import InstallCommands from '../components/InstallCommands';
 import type { ComponentDoc } from '../types';
+import { intros } from '../content/intros';
 
 interface ComponentPageProps {
   doc: ComponentDoc;
@@ -25,6 +26,7 @@ export default function ComponentPage({ doc, docs }: ComponentPageProps) {
         </p>
         <h1>{doc.name}</h1>
         <p className="component-description">{doc.description}</p>
+        {intros[doc.slug] && <p className="component-intro">{intros[doc.slug]}</p>}
       </header>
 
       <section aria-labelledby={`${doc.slug}-demo`}>

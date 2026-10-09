@@ -15,8 +15,10 @@ export default function Home({ docs }: HomeProps) {
           scilent-ui
         </h1>
         <p className="hero-tagline">
-          Accessible React components for music playback interfaces — players, artwork, labels, and
-          controls.
+          React components for building music and audio apps — players, artwork, metadata, and
+          transport controls. Copy the source into your project and own it, or install the npm
+          package. Built for the parts of a music product's UI that generic component libraries
+          leave to you: scrubbing, truncating artist names, buffering bars, platform-styled players.
         </p>
         <DemoFrame
           storyId="musicplayer--default"
@@ -48,7 +50,11 @@ export default function Home({ docs }: HomeProps) {
       </section>
 
       <section aria-labelledby="install-heading">
-        <h2 id="install-heading">Install</h2>
+        <h2 id="install-heading">Get started</h2>
+        <p>
+          Two ways in, pick the one that fits how you ship: install the npm package for versioned
+          updates, or copy a component's source through the registry and own the code outright.
+        </p>
         <div className="install-blocks">
           <div>
             <h3>npm</h3>
