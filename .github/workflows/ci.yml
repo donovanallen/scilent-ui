@@ -55,6 +55,20 @@ jobs:
       - name: Test (coverage enforced by jest.config.mjs thresholds)
         run: pnpm exec jest --config jest.config.mjs --coverage --coverageReporters=text-summary --coverageReporters=json-summary
 
+      # The docs site embeds Storybook stories via iframe (DemoFrame), so the
+      # static Storybook build must compile before any docs deploy. Fails CI if
+      # stories break.
+      - name: Build Storybook
+        run: pnpm build-storybook
+
+      - name: Upload Storybook build
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-static
+          path: packages/core/storybook-static/
+          if-no-files-found: ignore
+
       - name: Upload coverage
         if: always()
         uses: actions/upload-artifact@v4

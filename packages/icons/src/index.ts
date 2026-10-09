@@ -22,3 +22,6 @@ export { IconContext as PhosphorIconContext } from '@phosphor-icons/react';
 
 // Re-export React Icons context
 export { IconContext as ReactIconContext } from 'react-icons';
+
+// React 19 ref-forwarding compatibility for react-icons (see react19.ts)
+export * from './react19';

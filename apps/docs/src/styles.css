@@ -172,6 +172,13 @@ a:hover {
   font-size: 0.85rem;
 }
 
+.component-intro {
+  color: var(--text);
+  font-size: 1rem;
+  max-width: 68ch;
+  margin: 0.5rem 0 0;
+}
+
 /* Demo frames */
 .demo-frame {
   position: relative;

@@ -47,7 +47,7 @@ export function Link(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
 export default function App() {
   const path = useRoute();
 
-  let page: JSX.Element;
+  let page: React.JSX.Element;
   if (path === '/' || path === '') {
     page = <Home docs={docs} />;
   } else {

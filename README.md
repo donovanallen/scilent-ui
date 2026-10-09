@@ -1,188 +1,51 @@
-# Scilent UI
+# scilent-ui
 
-A component and utility library for music-based applications and UIs.
+React components for building music and audio apps — players, artwork, metadata displays, and transport controls.
+
+scilent-ui exists because generic component libraries stop at buttons and inputs; the hard parts of a music product's UI — scrubbing, buffering bars, truncating artist names, platform-styled players — are left to you. This library handles those parts, ships them with accessibility checks and tests, and gives you two ways to consume them.
 
 [![Build](https://github.com/donovanallen/scilent-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/donovanallen/scilent-ui/actions/workflows/ci.yml)
 [![Linting](https://github.com/donovanallen/scilent-ui/actions/workflows/lint.yml/badge.svg)](https://github.com/donovanallen/scilent-ui/actions/workflows/lint.yml)
 [![Release](https://github.com/donovanallen/scilent-ui/actions/workflows/release.yml/badge.svg)](https://github.com/donovanallen/scilent-ui/actions/workflows/release.yml)
-
-<!-- [![Documentation](https://img.shields.io/badge/docs-website-blue)](https://your-docs-site.com) -->
-<!-- [![codecov](https://codecov.io/gh/donovanallen/scilent-ui/branch/main/graph/badge.svg)](https://codecov.io/gh/donovanallen/scilent-ui) -->
-
 [![npm version](https://img.shields.io/npm/v/@scilent/core.svg?style=flat)](https://www.npmjs.com/package/@scilent/core)
+[![npm downloads](https://img.shields.io/npm/dw/@scilent/core?label=downloads%20per%20week)](https://www.npmjs.com/package/@scilent/core)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue?logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-19-20232A?logo=react&logoColor=61DAFB)
+![Storybook](https://img.shields.io/badge/Storybook-FF4785?logo=storybook&logoColor=white)
 
-<!-- [![npm downloads](https://img.shields.io/npm/dm/@scilent/core.svg?style=flat)](https://www.npmjs.com/package/@scilent/core) -->
-<!-- [![npm bundle size](https://img.shields.io/bundlephobia/minzip/@scilent/core)](https://bundlephobia.com/package/@scilent/core) -->
+## Two ways in
 
-[![npm](https://img.shields.io/npm/dw/@scilent/core?label=downloads%20per%20week)](https://www.npmjs.com/package/@scilent/core)
-[![npm](https://img.shields.io/npm/dt/@scilent/core?label=total%20downloads)](https://www.npmjs.com/package/@scilent/core)
+**1. Install from npm** — versioned packages, standard dependency management:
 
-<!-- [![dependencies Status](https://status.david-dm.org/gh/donovanallen/scilent-ui.svg)](https://david-dm.org/donovanallen/scilent-ui)
-[![devDependencies Status](https://status.david-dm.org/gh/donovanallen/scilent-ui.svg?type=dev)](https://david-dm.org/donovanallen/scilent-ui?type=dev) -->
+```bash
+npm i @scilent/core
+```
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.3.3-blue)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://www.react.dev/)
-[![Turborepo](https://img.shields.io/badge/Turborepo-EF4444?logo=turborepo&logoColor=white)](https://turbo.build/)
-[![Storybook](https://img.shields.io/badge/Storybook-FF4785?logo=storybook&logoColor=white)](https://storybook.js.org/)
-[![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
+**2. Copy the source** (shadcn-style registry) — the code lands in your repo and you own it:
 
-## Table of Contents
+```bash
+npx shadcn add "https://scilent-ui.dev/r/music-player.json"
+```
 
-- [Scilent UI](#scilent-ui)
-  - [Table of Contents](#table-of-contents)
-  - [Features](#features)
-    - [🎵 Music-Focused Components](#-music-focused-components)
-    - [🎨 Theming System](#-theming-system)
-    - [🔌 Music Provider Integration](#-music-provider-integration)
-    - [📱 Responsive Design](#-responsive-design)
-    - [🚀 Modern Technology Stack](#-modern-technology-stack)
-    - [♿ Accessibility](#-accessibility)
-    - [🧩 Customizable Components](#-customizable-components)
-    - [✨ Rich Interactions](#-rich-interactions)
-    - [🔍 Type Safety](#-type-safety)
-    - [📖 Open Source](#-open-source)
-  - [Current Status](#current-status)
-  - [Requirements](#requirements)
-  - [Getting Started](#getting-started)
-    - [Using NVM (recommended)](#using-nvm-recommended)
-    - [Development](#development)
-    - [Component Development with Storybook](#component-development-with-storybook)
-    - [Project Structure](#project-structure)
-    - [Release Process](#release-process)
-  - [Contributing](#contributing)
-  - [License](#license)
+Copy-paste-own is the primary distribution: components are plain source files with no hidden runtime beyond `styled-components` and Radix primitives, so you can restyle, fork, or strip them without fighting an abstraction.
 
-## Features
+## Components
 
-### 🎵 Music-Focused Components
+Every component ships with tests (including `jest-axe` accessibility checks), Storybook stories, and a registry entry.
 
-- **Available Now:**
+| Component     | What it does                                                                                                                                                              |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| MusicPlayer   | Complete playback surface — transport, progress, volume, track metadata; default / minimal / compact / expanded variants; Spotify, Apple Music, and Tidal styling presets |
+| AlbumArtwork  | Cover art with fallbacks, size tokens (xs–lg), optional expand-to-full-size modal                                                                                         |
+| ArtistLabel   | Artist name display with multi-artist joining and predictable truncation                                                                                                  |
+| MetadataLabel | General-purpose metadata text (album, year, genre…)                                                                                                                       |
+| Timestamp     | Duration/clock formatting for progress counters and track lengths                                                                                                         |
+| Slider        | Scrubber/fader built on Radix — progress, volume, any bounded continuous input, with buffer-bar support                                                                   |
+| IconButton    | Accessible icon button for play/pause, skip, mute, and the like                                                                                                           |
+| Card          | Plain surface container for grouping content                                                                                                                              |
 
-  - AlbumArtwork component for displaying album covers
-  - ArtistLabel for artist name display
-  - MetadataLabel for general music metadata
-  - Timestamp component for time display
-  - Slider component for progress bars and volume controls
-  - IconButton for common music player actions
-  - Basic MusicPlayer component
-
-- **Coming Soon:**
-  - Advanced music visualizers
-  - Playlist components
-  - Track list components
-  - More specialized music metadata displays
-
-### 🎨 Theming System
-
-- **Available Now:**
-
-  - Basic theming with CSS variables
-  - Component-level styling customization
-
-- **Coming Soon:**
-  - Comprehensive theming system with light and dark modes
-  - Rich typography system optimized for music applications
-  - Extensive iconography for music-related actions
-
-### 🔌 Music Provider Integration
-
-- **Planned for Future Releases:**
-  - Support for major music providers (Spotify, Apple Music, Tidal, etc.)
-  - Provider-specific styling and branding compliance
-  - Standardized interfaces across providers
-
-### 📱 Responsive Design
-
-- **Available Now:**
-
-  - Basic responsive components
-
-- **Coming Soon:**
-  - Fully responsive designs for all device sizes
-  - Adaptive layouts for different screen orientations
-  - Touch-optimized interactions for mobile devices
-
-### 🚀 Modern Technology Stack
-
-- **Available Now:**
-
-  - Built with React and TypeScript
-  - Monorepo structure using Turborepo
-  - Storybook for component documentation
-  - Vite for development
-
-- **Coming Soon:**
-  - AI-ready with .cursorrules boilerplate template
-
-### ♿ Accessibility
-
-- **Available Now:**
-
-  - Based on Radix UI Primitives for core accessibility
-  - Basic keyboard navigation support
-
-- **Coming Soon:**
-  - Full WCAG 2.1 AA compliance
-  - Enhanced screen reader optimization
-  - Comprehensive keyboard navigation
-
-### 🧩 Customizable Components
-
-- **Available Now:**
-
-  - Component customization via props
-  - Style overrides with CSS variables
-
-- **Coming Soon:**
-  - Enhanced theming API
-  - More extensible component patterns
-
-### ✨ Rich Interactions
-
-- **Available Now:**
-
-  - Basic animations and transitions
-
-- **Coming Soon:**
-  - Advanced interaction patterns
-  - Audio-reactive components
-  - Haptic feedback support
-
-### 🔍 Type Safety
-
-- **Available Now:**
-
-  - TypeScript throughout the codebase
-  - Type definitions for all components
-
-- **Coming Soon:**
-  - Enhanced type definitions
-  - Strongly typed theme system
-
-### 📖 Open Source
-
-- MIT licensed for maximum flexibility
-- Community contributions welcome
-- Transparent development process
-
-## Current Status
-
-Scilent UI is currently in early development. The following components are available:
-
-- ✅ AlbumArtwork
-- ✅ ArtistLabel
-- ✅ MetadataLabel
-- ✅ Timestamp
-- ✅ Slider
-- ✅ IconButton
-- ✅ Basic MusicPlayer
-
-The following features are under development:
-
-- 🚧 Comprehensive theming system
-- 🚧 Icons package
-- 🚧 Provider integrations
-- 🚧 Advanced music player components
+On the roadmap: playlists and track lists, music visualizers, a CSS-variable theming layer, provider integrations (Spotify, Apple Music, Tidal).
 
 ## Requirements
 
@@ -191,99 +54,50 @@ The following features are under development:
 
 ## Getting Started
 
-### Using NVM (recommended)
-
-This project uses [Node Version Manager (NVM)](https://github.com/nvm-sh/nvm) to manage Node.js versions.
-
 ```bash
-# Install the correct Node.js version
-nvm install
-nvm use
-
-# Install dependencies
+nvm install && nvm use
 pnpm install
 ```
 
 ### Development
 
 ```bash
-# Start the development server
-pnpm dev
-
-# Run linting
-pnpm lint
-
-# Run tests
-pnpm test
-
-# Build all packages
-pnpm build
-
-# Run Storybook
-pnpm storybook
+pnpm dev              # development servers
+pnpm test             # jest suite (coverage thresholds enforced in jest.config.mjs)
+pnpm lint             # eslint
+pnpm build            # build all packages
+pnpm storybook        # Storybook dev server (localhost:6006)
+pnpm build-storybook  # static Storybook build (CI runs this too)
 ```
-
-### Component Development with Storybook
-
-We use [Storybook](https://storybook.js.org/) for developing and documenting components in isolation. Storybook provides a great way to visualize different states of your components and develop them interactively.
-
-```bash
-# Start Storybook
-pnpm storybook
-
-# Build Storybook for static deployment
-pnpm build-storybook
-```
-
-Storybook is powered by [Vite](https://vitejs.dev/), which provides:
-
-- Extremely fast hot module replacement (HMR)
-- Native ES modules support
-- Optimized build performance
-- Built-in support for TypeScript, JSX, CSS, and more
-
-Each component in the library has:
-
-- A `.stories.tsx` file that defines various states and variants
-- Auto-generated API documentation from TypeScript types and JSDoc comments
-
-To view the Storybook documentation locally, run `pnpm storybook` and open your browser to http://localhost:6006.
 
 ### Project Structure
 
-This is a monorepo managed with pnpm workspaces and Turborepo. The packages are organized as follows:
+Monorepo managed with pnpm workspaces and Turborepo:
 
-- `packages/core`: Core components and utilities
-- `packages/icons`: Icon components (in development)
-- `packages/themes`: Theme definitions and utilities (planned)
+- `packages/core` — the components (`@scilent/core`)
+- `packages/icons` — icon primitives and compatibility helpers (`@scilent/icons`)
+- `packages/themes` — theme scaffolding (pre-release)
+- `packages/registry` — generated shadcn-style registry (`registry.json` + `r/<slug>.json`)
+- `apps/docs` — docs site source
 
-### Release Process
+### Releases
 
-This project uses [Changesets](https://github.com/changesets/changesets) to manage versions and publish packages.
+Versions are managed with [Changesets](https://github.com/changesets/changesets); the release workflow publishes to npm on version-PR merge to `main`.
 
 ```bash
-# Create a new changeset
-pnpm changeset
-
-# Version packages based on changesets
-pnpm version-packages
-
-# Publish packages
-pnpm release
+pnpm changeset        # record a change
+pnpm version-packages # apply versions
 ```
 
 ## Contributing
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes using conventional commits (`git commit -m 'feat: add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+3. Commit with conventional commits (`git commit -m 'feat: add some amazing feature'`)
+4. Push and open a Pull Request
 
-See the [Contributing](https://github.com/donovanallen/scilent-ui/blob/main/CONTRIBUTING.md) readme for more instructions on how to contribute to this project.
+New components must include tests, `jest-axe` checks, stories, and a registry entry. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 MIT © [Scilent Digital](https://scilent.digital)
