@@ -1,5 +1,12 @@
 # @scilent/core
 
+## 2.1.1
+
+### Patch Changes
+
+- Updated dependencies [9e23d70]
+  - @scilent/icons@1.2.0
+
 ## 2.1.0
 
 ### Minor Changes
